@@ -1,0 +1,2149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PinkyEdu 🎀 - Alat Tulis & Jasa Akademik</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{
+  --pink-50:#fff5f8; --pink-100:#ffe6ef; --pink-200:#ffd1e1;
+  --pink-300:#ffb3cc; --pink-400:#ff8fb1; --pink-500:#ff6b9d;
+  --pink-600:#f0477e; --cream:#fff9f3;
+  --soft-blue:#e6f0ff; --soft-blue-2:#c9dcff;
+  --text:#4a3a44; --text-light:#8a7a85; --white:#ffffff;
+  --shadow:0 4px 20px rgba(255,107,157,0.12);
+  --shadow-lg:0 8px 32px rgba(255,107,157,0.18);
+  --radius:18px; --radius-sm:12px;
+  --success:#7ed957; --warning:#ffb84d; --danger:#ff6b6b;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{font-family:'Quicksand','Poppins',sans-serif;
+  background:linear-gradient(180deg,#fff9fb,#fff5f8);
+  color:var(--text);font-size:15px;line-height:1.5;overflow-x:hidden;}
+h1,h2,h3,h4{font-family:'Poppins',sans-serif;color:var(--text);}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+input,textarea,select{font-family:inherit;font-size:14px;}
+
+#app{min-height:100vh;display:flex;flex-direction:column;padding-bottom:70px;}
+@media(min-width:769px){#app{padding-bottom:0;}}
+
+.header{position:sticky;top:0;z-index:100;
+  background:linear-gradient(135deg,#fff5f8,#ffe6ef);
+  border-bottom:1px solid var(--pink-200);padding:12px 16px;
+  display:flex;align-items:center;gap:12px;
+  box-shadow:0 2px 12px rgba(255,107,157,0.08);}
+.logo{display:flex;align-items:center;gap:8px;
+  font-family:'Poppins';font-weight:700;font-size:20px;
+  color:var(--pink-600);cursor:pointer;flex-shrink:0;}
+.logo-icon{width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,var(--pink-300),var(--pink-500));
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;box-shadow:0 3px 10px rgba(255,107,157,0.3);}
+.header-search{flex:1;display:flex;align-items:center;gap:8px;
+  background:var(--white);border-radius:999px;padding:8px 16px;
+  border:1.5px solid var(--pink-200);max-width:500px;}
+.header-search input{flex:1;border:none;outline:none;background:transparent;color:var(--text);font-size:14px;}
+.header-search i{color:var(--pink-500);}
+.header-actions{display:flex;align-items:center;gap:8px;margin-left:auto;}
+.icon-btn{width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--white);border:1.5px solid var(--pink-200);
+  color:var(--pink-600);font-size:16px;position:relative;transition:all .2s;}
+.icon-btn:hover{background:var(--pink-100);transform:translateY(-2px);}
+.icon-btn .badge{position:absolute;top:-4px;right:-4px;
+  background:var(--pink-500);color:#fff;font-size:10px;font-weight:700;
+  min-width:18px;height:18px;border-radius:9px;display:flex;
+  align-items:center;justify-content:center;padding:0 4px;
+  border:2px solid var(--white);}
+.header-desktop-nav{display:none;gap:4px;}
+@media(min-width:900px){
+  .header-desktop-nav{display:flex;}
+  .header-desktop-nav button{padding:8px 16px;border-radius:999px;
+    font-weight:600;color:var(--text);font-size:14px;transition:all .2s;}
+  .header-desktop-nav button:hover,.header-desktop-nav button.active{
+    background:var(--pink-100);color:var(--pink-600);}
+}
+@media(max-width:768px){.header-search{display:none;}.header{padding:10px 12px;}}
+
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:var(--white);border-top:1px solid var(--pink-200);
+  display:flex;justify-content:space-around;padding:6px 4px 8px;
+  box-shadow:0 -4px 20px rgba(255,107,157,0.1);}
+.bottom-nav button{flex:1;display:flex;flex-direction:column;
+  align-items:center;gap:2px;padding:6px 4px;border-radius:12px;
+  color:var(--text-light);font-size:10px;font-weight:600;
+  position:relative;transition:all .2s;}
+.bottom-nav button i{font-size:19px;}
+.bottom-nav button.active{color:var(--pink-600);}
+.bottom-nav button.active i{transform:scale(1.1);}
+.bottom-nav button .badge{position:absolute;top:0;right:calc(50% - 22px);
+  background:var(--pink-500);color:#fff;font-size:9px;font-weight:700;
+  min-width:16px;height:16px;border-radius:8px;display:flex;
+  align-items:center;justify-content:center;padding:0 4px;
+  border:2px solid var(--white);}
+@media(min-width:769px){.bottom-nav{display:none;}}
+
+.main{flex:1;padding:16px;max-width:1200px;margin:0 auto;width:100%;}
+@media(min-width:769px){.main{padding:24px;}}
+.page{display:none;animation:fadeIn .3s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.card{background:var(--white);border-radius:var(--radius);
+  padding:16px;box-shadow:var(--shadow);border:1px solid var(--pink-100);}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;
+  gap:8px;padding:12px 20px;border-radius:999px;
+  font-weight:700;font-size:14px;transition:all .2s;
+  white-space:nowrap;cursor:pointer;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:linear-gradient(135deg,var(--pink-400),var(--pink-600));
+  color:#fff;box-shadow:0 4px 14px rgba(255,107,157,0.35);}
+.btn-primary:hover{box-shadow:0 6px 20px rgba(255,107,157,0.45);transform:translateY(-2px);}
+.btn-secondary{background:var(--pink-100);color:var(--pink-600);
+  border:1.5px solid var(--pink-200);}
+.btn-secondary:hover{background:var(--pink-200);}
+.btn-outline{background:transparent;color:var(--pink-600);
+  border:1.5px solid var(--pink-300);}
+.btn-outline:hover{background:var(--pink-50);}
+.btn-wa{background:linear-gradient(135deg,#4ade80,#22c55e);
+  color:#fff;box-shadow:0 4px 14px rgba(34,197,94,0.35);}
+.btn-danger{background:var(--danger);color:#fff;}
+.btn-block{width:100%;}
+.btn-sm{padding:8px 14px;font-size:13px;}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+
+.badge-pill{display:inline-flex;align-items:center;gap:4px;
+  padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;}
+.badge-pink{background:var(--pink-100);color:var(--pink-600);}
+.badge-blue{background:var(--soft-blue);color:#4a7bff;}
+.badge-success{background:#e6f9e0;color:#3a9e1a;}
+.badge-warning{background:#fff3e0;color:#e68a00;}
+.badge-danger{background:#ffe6e6;color:#d63333;}
+
+.hero{background:linear-gradient(135deg,#ffe6ef,#ffd1e1 50%,#e6f0ff);
+  border-radius:var(--radius);padding:28px 20px;margin-bottom:20px;
+  position:relative;overflow:hidden;border:1px solid var(--pink-200);}
+.hero::before,.hero::after{content:'';position:absolute;
+  border-radius:50%;background:rgba(255,255,255,0.5);}
+.hero::before{width:120px;height:120px;top:-40px;right:-30px;}
+.hero::after{width:80px;height:80px;bottom:-30px;left:-20px;}
+.hero-content{position:relative;z-index:1;}
+.hero h1{font-size:22px;margin-bottom:8px;color:var(--pink-600);}
+.hero p{font-size:14px;color:var(--text);margin-bottom:6px;}
+.hero .quote{font-style:italic;font-size:13px;color:var(--text-light);
+  padding:10px 14px;background:rgba(255,255,255,0.7);
+  border-radius:var(--radius-sm);margin:12px 0;
+  border-left:3px solid var(--pink-400);}
+@media(min-width:600px){.hero{padding:36px 32px;}.hero h1{font-size:28px;}}
+
+.info-grid{display:grid;grid-template-columns:1fr;gap:8px;margin:16px 0;}
+@media(min-width:500px){.info-grid{grid-template-columns:1fr 1fr;}}
+.info-item{display:flex;align-items:center;gap:8px;
+  padding:10px 14px;background:rgba(255,255,255,0.8);
+  border-radius:var(--radius-sm);font-size:13px;
+  border:1px solid var(--pink-100);}
+.info-item i{color:var(--pink-500);font-size:14px;}
+
+.section-title{display:flex;align-items:center;
+  justify-content:space-between;margin:20px 0 14px;}
+.section-title h2{font-size:18px;}
+.section-title a,.section-title button{color:var(--pink-600);
+  font-weight:700;font-size:13px;}
+
+.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(min-width:600px){.product-grid{grid-template-columns:repeat(3,1fr);gap:16px;}}
+@media(min-width:900px){.product-grid{grid-template-columns:repeat(4,1fr);}}
+
+.product-card{background:var(--white);border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--pink-100);
+  transition:all .25s;display:flex;flex-direction:column;cursor:pointer;}
+.product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.product-card.service{border:1.5px dashed var(--soft-blue-2);}
+.product-img{width:100%;aspect-ratio:1/1;display:flex;
+  align-items:center;justify-content:center;font-size:44px;
+  position:relative;background:linear-gradient(135deg,#fff5f8,#ffe6ef);}
+.product-card.service .product-img{background:linear-gradient(135deg,#e6f0ff,#c9dcff);}
+.product-img .service-tag{position:absolute;top:8px;left:8px;
+  background:var(--soft-blue-2);color:#4a7bff;padding:3px 8px;
+  border-radius:999px;font-size:9px;font-weight:700;}
+.product-body{padding:10px 12px 12px;display:flex;
+  flex-direction:column;gap:6px;flex:1;}
+.product-name{font-size:13px;font-weight:700;line-height:1.3;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  overflow:hidden;min-height:34px;}
+.product-price{font-size:15px;font-weight:800;color:var(--pink-600);}
+.product-unit{font-size:11px;color:var(--text-light);}
+.product-meta{display:flex;align-items:center;
+  justify-content:space-between;font-size:11px;}
+.product-actions{margin-top:auto;display:flex;gap:6px;}
+.product-actions .btn{flex:1;padding:8px 6px;font-size:11px;}
+
+.page-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.back-btn{width:38px;height:38px;border-radius:50%;
+  background:var(--white);border:1.5px solid var(--pink-200);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--pink-600);font-size:15px;flex-shrink:0;}
+.back-btn:hover{background:var(--pink-100);}
+.page-header h1{font-size:18px;}
+
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;
+  margin-bottom:14px;-webkit-overflow-scrolling:touch;}
+.chips::-webkit-scrollbar{display:none;}
+.chip{padding:8px 16px;border-radius:999px;background:var(--white);
+  border:1.5px solid var(--pink-200);font-size:13px;font-weight:600;
+  white-space:nowrap;color:var(--text);transition:all .2s;}
+.chip.active{background:var(--pink-500);color:#fff;border-color:var(--pink-500);}
+.chip:hover:not(.active){background:var(--pink-50);}
+
+.search-box{display:flex;align-items:center;gap:8px;
+  background:var(--white);border-radius:999px;padding:10px 16px;
+  border:1.5px solid var(--pink-200);margin-bottom:14px;}
+.search-box input{flex:1;border:none;outline:none;background:transparent;}
+.search-box i{color:var(--pink-500);}
+
+.cart-item{display:flex;gap:12px;padding:12px;
+  background:var(--white);border-radius:var(--radius-sm);
+  border:1px solid var(--pink-100);margin-bottom:10px;}
+.cart-item-img{width:70px;height:70px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;background:linear-gradient(135deg,#fff5f8,#ffe6ef);
+  flex-shrink:0;}
+.cart-item-body{flex:1;display:flex;flex-direction:column;
+  gap:4px;min-width:0;}
+.cart-item-name{font-size:13px;font-weight:700;}
+.cart-item-price{font-size:12px;color:var(--text-light);}
+.cart-item-sub{font-size:14px;font-weight:800;color:var(--pink-600);}
+
+.qty-control{display:inline-flex;align-items:center;
+  border:1.5px solid var(--pink-200);border-radius:999px;
+  overflow:hidden;background:var(--white);}
+.qty-control button{width:30px;height:30px;display:flex;
+  align-items:center;justify-content:center;
+  color:var(--pink-600);font-size:13px;}
+.qty-control button:hover{background:var(--pink-50);}
+.qty-control button:disabled{opacity:.4;cursor:not-allowed;}
+.qty-control span{min-width:32px;text-align:center;
+  font-weight:700;font-size:13px;}
+
+.remove-btn{color:var(--danger);font-size:13px;
+  padding:4px 8px;align-self:flex-start;}
+.remove-btn:hover{background:#ffe6e6;border-radius:8px;}
+
+.summary{background:var(--white);border-radius:var(--radius);
+  padding:16px;border:1px solid var(--pink-100);
+  box-shadow:var(--shadow);margin-top:16px;}
+.summary-row{display:flex;justify-content:space-between;
+  padding:6px 0;font-size:14px;}
+.summary-row.total{border-top:1.5px dashed var(--pink-200);
+  margin-top:8px;padding-top:12px;font-size:17px;
+  font-weight:800;color:var(--pink-600);}
+
+.empty{text-align:center;padding:48px 20px;}
+.empty-icon{font-size:56px;margin-bottom:12px;}
+.empty h3{font-size:16px;margin-bottom:6px;}
+.empty p{font-size:13px;color:var(--text-light);margin-bottom:16px;}
+
+.form-group{margin-bottom:14px;}
+.form-group label{display:block;font-size:13px;font-weight:700;
+  margin-bottom:6px;color:var(--text);}
+.form-group input,.form-group textarea,.form-group select{
+  width:100%;padding:11px 14px;border:1.5px solid var(--pink-200);
+  border-radius:var(--radius-sm);background:var(--white);
+  color:var(--text);outline:none;transition:border .2s;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{
+  border-color:var(--pink-400);box-shadow:0 0 0 3px rgba(255,107,157,0.1);}
+.form-group textarea{resize:vertical;min-height:70px;}
+
+.checkbox-row{display:flex;align-items:flex-start;gap:10px;
+  padding:12px;background:var(--pink-50);
+  border-radius:var(--radius-sm);margin:14px 0;}
+.checkbox-row input{width:18px;height:18px;
+  accent-color:var(--pink-500);margin-top:2px;}
+.checkbox-row label{font-size:13px;cursor:pointer;}
+
+.payment-options{display:grid;grid-template-columns:1fr 1fr;
+  gap:8px;margin:12px 0;}
+@media(min-width:500px){.payment-options{grid-template-columns:repeat(3,1fr);}}
+.payment-option{padding:12px 8px;border:1.5px solid var(--pink-200);
+  border-radius:var(--radius-sm);text-align:center;
+  background:var(--white);transition:all .2s;cursor:pointer;
+  font-size:12px;font-weight:600;}
+.payment-option i{display:block;font-size:18px;
+  margin-bottom:4px;color:var(--pink-500);}
+.payment-option.active{border-color:var(--pink-500);
+  background:var(--pink-50);box-shadow:0 3px 10px rgba(255,107,157,0.15);}
+
+.payment-detail{background:var(--pink-50);
+  border-radius:var(--radius-sm);padding:16px;margin-top:12px;
+  border:1px dashed var(--pink-300);}
+.payment-detail .row{display:flex;justify-content:space-between;
+  padding:5px 0;font-size:13px;}
+.copy-btn{background:var(--pink-500);color:#fff;padding:4px 10px;
+  border-radius:8px;font-size:11px;font-weight:700;}
+.copy-btn:hover{background:var(--pink-600);}
+.qris-box{text-align:center;padding:16px;background:var(--white);
+  border-radius:var(--radius-sm);margin-top:10px;}
+.qris-img{width:180px;height:180px;margin:0 auto;
+  background:repeating-conic-gradient(#000 0 25%,#fff 0 50%) 0 0/20px 20px;
+  border-radius:12px;border:2px solid var(--pink-200);
+  display:flex;align-items:center;justify-content:center;
+  font-size:40px;color:var(--pink-500);}
+
+.order-card{background:var(--white);border-radius:var(--radius);
+  padding:14px;border:1px solid var(--pink-100);
+  box-shadow:var(--shadow);margin-bottom:12px;}
+.order-head{display:flex;justify-content:space-between;
+  align-items:center;padding-bottom:10px;
+  border-bottom:1px dashed var(--pink-200);
+  margin-bottom:10px;font-size:12px;}
+.order-id{font-weight:800;color:var(--pink-600);}
+.order-items{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
+.order-item-row{display:flex;gap:10px;align-items:center;font-size:13px;}
+.order-item-row .oi-img{width:44px;height:44px;border-radius:10px;
+  background:var(--pink-50);display:flex;align-items:center;
+  justify-content:center;font-size:22px;flex-shrink:0;}
+.order-foot{display:flex;justify-content:space-between;
+  align-items:center;padding-top:10px;
+  border-top:1px dashed var(--pink-200);}
+.order-total{font-size:15px;font-weight:800;color:var(--pink-600);}
+.order-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+
+.progress{display:flex;flex-direction:column;gap:0;
+  margin:14px 0;padding:14px;background:var(--pink-50);
+  border-radius:var(--radius-sm);}
+.progress-step{display:flex;gap:10px;align-items:flex-start;
+  position:relative;padding-bottom:14px;}
+.progress-step:last-child{padding-bottom:0;}
+.progress-step::before{content:'';position:absolute;left:9px;
+  top:22px;bottom:0;width:2px;background:var(--pink-200);}
+.progress-step:last-child::before{display:none;}
+.progress-step.done::before{background:var(--pink-500);}
+.progress-dot{width:20px;height:20px;border-radius:50%;
+  border:2px solid var(--pink-200);background:var(--white);
+  flex-shrink:0;display:flex;align-items:center;
+  justify-content:center;font-size:10px;color:#fff;z-index:1;}
+.progress-step.done .progress-dot{background:var(--pink-500);
+  border-color:var(--pink-500);}
+.progress-step.active .progress-dot{background:var(--white);
+  border-color:var(--pink-500);animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,107,157,0.4);}
+  50%{box-shadow:0 0 0 6px rgba(255,107,157,0);}}
+.progress-label{font-size:12px;font-weight:600;padding-top:1px;}
+.progress-label small{display:block;font-weight:400;
+  color:var(--text-light);font-size:11px;}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(74,58,68,0.5);
+  backdrop-filter:blur(3px);z-index:1000;display:none;
+  align-items:center;justify-content:center;padding:16px;}
+.modal-overlay.show{display:flex;animation:fadeIn .2s;}
+.modal{background:var(--white);border-radius:var(--radius);
+  padding:22px;max-width:420px;width:100%;
+  box-shadow:0 20px 60px rgba(0,0,0,0.2);
+  animation:slideUp .3s;max-height:90vh;overflow-y:auto;}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0;}
+  to{transform:translateY(0);opacity:1;}}
+.modal h3{font-size:17px;margin-bottom:10px;}
+.modal p{font-size:14px;color:var(--text-light);margin-bottom:18px;}
+.modal-actions{display:flex;gap:8px;}
+.modal-actions .btn{flex:1;}
+
+.toast-container{position:fixed;top:80px;left:50%;
+  transform:translateX(-50%);z-index:2000;
+  display:flex;flex-direction:column;gap:8px;
+  width:calc(100% - 32px);max-width:400px;pointer-events:none;}
+.toast{background:var(--white);border-radius:var(--radius-sm);
+  padding:12px 16px;box-shadow:var(--shadow-lg);
+  border-left:4px solid var(--pink-500);display:flex;
+  align-items:center;gap:10px;font-size:13px;font-weight:600;
+  animation:toastIn .3s;pointer-events:auto;}
+.toast.success{border-left-color:var(--success);}
+.toast.error{border-left-color:var(--danger);}
+.toast.info{border-left-color:#4a7bff;}
+.toast i{font-size:16px;color:var(--pink-500);}
+.toast.success i{color:var(--success);}
+.toast.error i{color:var(--danger);}
+.toast.info i{color:#4a7bff;}
+@keyframes toastIn{from{transform:translateY(-20px);opacity:0;}
+  to{transform:translateY(0);opacity:1;}}
+
+.detail-img{width:100%;aspect-ratio:1/1;max-height:340px;
+  background:linear-gradient(135deg,#fff5f8,#ffe6ef);
+  border-radius:var(--radius);display:flex;
+  align-items:center;justify-content:center;
+  font-size:80px;margin-bottom:16px;}
+.detail-price{font-size:24px;font-weight:800;
+  color:var(--pink-600);margin:8px 0;}
+.detail-info-grid{display:grid;grid-template-columns:1fr 1fr;
+  gap:8px;margin:14px 0;}
+.detail-info-grid .di{padding:10px;background:var(--pink-50);
+  border-radius:var(--radius-sm);font-size:12px;}
+.detail-info-grid .di b{display:block;color:var(--pink-600);
+  font-size:14px;margin-top:2px;}
+.detail-desc{font-size:14px;color:var(--text-light);
+  line-height:1.6;margin:10px 0;}
+
+.auth-tabs{display:flex;background:var(--pink-100);
+  border-radius:999px;padding:4px;margin-bottom:20px;}
+.auth-tabs button{flex:1;padding:10px;border-radius:999px;
+  font-weight:700;font-size:14px;color:var(--text-light);
+  transition:all .2s;}
+.auth-tabs button.active{background:var(--white);
+  color:var(--pink-600);box-shadow:0 2px 8px rgba(255,107,157,0.15);}
+
+.file-item{display:flex;align-items:center;gap:10px;
+  padding:10px 12px;background:var(--pink-50);
+  border-radius:var(--radius-sm);margin-bottom:8px;font-size:12px;}
+.file-item .fi-icon{width:36px;height:36px;border-radius:10px;
+  background:var(--white);display:flex;align-items:center;
+  justify-content:center;color:var(--pink-500);font-size:16px;}
+.file-item .fi-info{flex:1;min-width:0;}
+.file-item .fi-name{font-weight:700;font-size:12px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.file-item .fi-meta{font-size:10px;color:var(--text-light);}
+.file-item .fi-del{color:var(--danger);padding:6px;}
+
+.stars{display:flex;gap:4px;font-size:24px;}
+.stars i{color:#ddd;cursor:pointer;transition:all .15s;}
+.stars i.active{color:#ffc107;transform:scale(1.1);}
+
+.admin-layout{display:flex;gap:16px;
+  min-height:calc(100vh - 140px);}
+.admin-sidebar{display:none;width:220px;flex-shrink:0;
+  background:var(--white);border-radius:var(--radius);
+  padding:14px;border:1px solid var(--pink-100);
+  height:fit-content;position:sticky;top:80px;}
+@media(min-width:900px){.admin-sidebar{display:block;}}
+.admin-sidebar button{width:100%;text-align:left;
+  padding:10px 14px;border-radius:var(--radius-sm);
+  font-size:13px;font-weight:600;color:var(--text);
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:4px;transition:all .2s;}
+.admin-sidebar button:hover{background:var(--pink-50);}
+.admin-sidebar button.active{background:var(--pink-100);
+  color:var(--pink-600);}
+.admin-content{flex:1;min-width:0;}
+
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);
+  gap:10px;margin-bottom:16px;}
+@media(min-width:600px){.stat-grid{grid-template-columns:repeat(4,1fr);}}
+.stat-card{background:var(--white);border-radius:var(--radius);
+  padding:14px;border:1px solid var(--pink-100);
+  box-shadow:var(--shadow);}
+.stat-card .sc-label{font-size:11px;color:var(--text-light);
+  font-weight:600;}
+.stat-card .sc-value{font-size:22px;font-weight:800;
+  color:var(--pink-600);margin-top:4px;}
+.stat-card .sc-icon{font-size:18px;color:var(--pink-400);float:right;}
+
+.divider{height:1px;background:var(--pink-200);margin:16px 0;}
+.flex{display:flex;}
+.flex-between{display:flex;justify-content:space-between;align-items:center;}
+.gap-8{gap:8px;}
+.mt-8{margin-top:8px;}
+.mt-16{margin-top:16px;}
+.mb-8{margin-bottom:8px;}
+.mb-16{margin-bottom:16px;}
+.text-center{text-align:center;}
+.text-light{color:var(--text-light);}
+.text-pink{color:var(--pink-600);}
+.fw-700{font-weight:700;}
+.fs-12{font-size:12px;}
+.fs-13{font-size:13px;}
+.hidden{display:none !important;}
+
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:var(--pink-50);}
+::-webkit-scrollbar-thumb{background:var(--pink-300);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<div id="app">
+  <header class="header">
+    <div class="logo" onclick="nav.go('home')">
+      <div class="logo-icon">🎀</div>
+      <span>PinkyEdu</span>
+    </div>
+    <div class="header-search">
+      <i class="fas fa-search"></i>
+      <input type="text" id="globalSearch" placeholder="Cari produk atau jasa..." onkeyup="if(event.key==='Enter')shop.search(this.value)">
+    </div>
+    <nav class="header-desktop-nav" id="desktopNav"></nav>
+    <div class="header-actions">
+      <button class="icon-btn" onclick="nav.go('cart')" title="Keranjang">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge hidden" id="cartBadgeHeader">0</span>
+      </button>
+      <button class="icon-btn" onclick="nav.go('profile')" title="Profil">
+        <i class="fas fa-user"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="main" id="mainContent"></main>
+</div>
+
+<nav class="bottom-nav" id="bottomNav"></nav>
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalContent"></div>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+/* ============= STORAGE ============= */
+const DB = {
+  get(key, def=null){
+    try{const v=localStorage.getItem('pinkyedu_'+key);
+    return v?JSON.parse(v):def;}catch(e){return def;}
+  },
+  set(key, val){localStorage.setItem('pinkyedu_'+key, JSON.stringify(val));},
+  remove(key){localStorage.removeItem('pinkyedu_'+key);}
+};
+
+/* ============= INIT DATA ============= */
+function initData(){
+  if(!DB.get('products')){
+    DB.set('products', [
+      {id:'p1',name:'Jasa Daftar Pustaka',category:'Jasa Akademik',type:'service',
+       description:'Membantu mahasiswa menyusun dan merapikan daftar pustaka sesuai kebutuhan akademik.',
+       image:'📚',price:7000,unit:'10 daftar pustaka',stock:null,
+       priceTiers:[{qty:10,price:7000},{qty:20,price:14000},{qty:30,price:21000}]},
+      {id:'p2',name:'Pendampingan Skripsi Bab 1',category:'Jasa Akademik',type:'service',
+       description:'Bantuan pendampingan, review, penyuntingan, dan revisi dasar untuk Bab 1 berdasarkan karya mahasiswa.',
+       image:'📝',price:250000,unit:'layanan',stock:null,bab:1},
+      {id:'p3',name:'Pendampingan Skripsi Bab 2',category:'Jasa Akademik',type:'service',
+       description:'Bantuan pendampingan, review, penyuntingan, dan revisi dasar untuk Bab 2 berdasarkan karya mahasiswa.',
+       image:'📝',price:300000,unit:'layanan',stock:null,bab:2},
+      {id:'p4',name:'Pendampingan Skripsi Bab 3',category:'Jasa Akademik',type:'service',
+       description:'Bantuan pendampingan, review, penyuntingan, dan revisi dasar untuk Bab 3 berdasarkan karya mahasiswa.',
+       image:'📝',price:350000,unit:'layanan',stock:null,bab:3},
+      {id:'p5',name:'Pendampingan Skripsi Bab 4',category:'Jasa Akademik',type:'service',
+       description:'Bantuan pendampingan, review, penyuntingan, dan revisi dasar untuk Bab 4 berdasarkan karya mahasiswa.',
+       image:'📝',price:400000,unit:'layanan',stock:null,bab:4},
+      {id:'p6',name:'Pendampingan Skripsi Bab 5',category:'Jasa Akademik',type:'service',
+       description:'Bantuan pendampingan, review, penyuntingan, dan revisi dasar untuk Bab 5 berdasarkan karya mahasiswa.',
+       image:'📝',price:200000,unit:'layanan',stock:null,bab:5},
+      {id:'p7',name:'Kertas Margin Fisika',category:'Produk Akademik',type:'product',
+       description:'Kertas A4 dengan garis margin yang sudah tersedia sehingga mahasiswa tidak perlu membuat garis margin secara manual.',
+       image:'📄',price:3000,unit:'10 lembar',stock:20,
+       priceTiers:[{qty:10,price:3000},{qty:20,price:6000},{qty:30,price:9000},{qty:40,price:12000}]},
+      {id:'p8',name:'Alat Margin Biologi',category:'Alat Tulis',type:'product',
+       description:'Alat margin yang dapat digunakan kembali untuk membantu membuat garis margin pada kertas praktikum biologi.',
+       image:'📏',price:15000,unit:'alat',stock:15,
+       priceTiers:[{qty:1,price:15000},{qty:2,price:30000},{qty:3,price:45000}]}
+    ]);
+  }
+  if(!DB.get('users')){
+    DB.set('users',[
+      {id:'u_admin',name:'Admin PinkyEdu',email:'admin@pinkyedu.id',
+       whatsapp:'085604740012',password:'admin123',role:'admin'},
+      {id:'u_demo',name:'Demo Buyer',email:'buyer@demo.id',
+       whatsapp:'081234567890',password:'buyer123',role:'buyer'}
+    ]);
+  }
+  if(!DB.get('orders')) DB.set('orders',[]);
+  if(!DB.get('notifications')) DB.set('notifications',[]);
+  if(!DB.get('ratings')) DB.set('ratings',[]);
+  if(!DB.get('settings')){
+    DB.set('settings',{
+      whatsapp:'085604740012',
+      instagram:'https://www.instagram.com/pinkyedu.id?stkn=c2I4NjZnamhsemM3&utm_source=qr',
+      tiktok:'https://www.tiktok.com/@pinkyedu.id',
+      storeName:'PinkyEdu 🎀', email:'admin@pinkyedu.id',
+      bankName:'BCA', bankAccount:'1234567890', bankHolder:'PinkyEdu Admin',
+      qrisReceiver:'PinkyEdu Store', orderCounter:0
+    });
+  }
+}
+
+/* ============= STATE ============= */
+let state = {
+  currentUser: DB.get('currentUser', null),
+  cart: DB.get('cart', []),
+  currentPage: 'home',
+  pageHistory: [],
+  adminTab: 'dashboard',
+  filters:{category:'all',search:'',type:'all'},
+  checkoutStep: 'form' // 'form' | 'payment'
+};
+function saveCart(){DB.set('cart', state.cart); updateCartBadges();}
+function saveUser(){DB.set('currentUser', state.currentUser);}
+
+/* ============= HELPERS ============= */
+const fmt = (n)=>'Rp'+Number(n).toLocaleString('id-ID');
+const uid = ()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const today = ()=>new Date().toISOString().split('T')[0];
+const nowTime = ()=>{const d=new Date();
+  return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');};
+
+function generateOrderId(){
+  const s = DB.get('settings');
+  s.orderCounter = (s.orderCounter||0)+1;
+  DB.set('settings',s);
+  const d = new Date();
+  const dateStr = d.getFullYear().toString()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');
+  return `PS-${dateStr}-${String(s.orderCounter).padStart(3,'0')}`;
+}
+function getProducts(){return DB.get('products',[]);}
+function getUsers(){return DB.get('users',[]);}
+function getOrders(){return DB.get('orders',[]);}
+function saveOrders(o){DB.set('orders',o);}
+function getRatings(){return DB.get('ratings',[]);}
+function saveRatings(r){DB.set('ratings',r);}
+
+/* ============= TOAST ============= */
+function toast(msg, type='success'){
+  const c = document.getElementById('toastContainer');
+  const icons = {success:'fa-check-circle',error:'fa-exclamation-circle',info:'fa-info-circle'};
+  const el = document.createElement('div');
+  el.className = 'toast '+type;
+  el.innerHTML = `<i class="fas ${icons[type]||icons.info}"></i><span>${msg}</span>`;
+  c.appendChild(el);
+  setTimeout(()=>{el.style.opacity='0';
+    el.style.transform='translateY(-20px)';
+    el.style.transition='all .3s';
+    setTimeout(()=>el.remove(),300);},2800);
+}
+
+/* ============= MODAL ============= */
+function showModal(html){
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('show');
+}
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('show');
+}
+document.getElementById('modalOverlay').addEventListener('click',e=>{
+  if(e.target.id==='modalOverlay') closeModal();
+});
+function confirmDialog(title,msg,onYes,yesText='Ya',danger=false){
+  showModal(`
+    <h3>${title}</h3>
+    <p>${msg}</p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal()">Tidak, Kembali</button>
+      <button class="btn ${danger?'btn-danger':'btn-primary'}" id="modalYesBtn">${yesText}</button>
+    </div>
+  `);
+  document.getElementById('modalYesBtn').onclick = ()=>{closeModal();onYes();};
+}
+
+/* ============= NOTIF ============= */
+function addNotification(userId, orderId, message){
+  const n = DB.get('notifications',[]);
+  n.push({id:uid(),user_id:userId,order_id:orderId,message,
+    status:'unread',created_at:new Date().toISOString()});
+  DB.set('notifications',n);
+}
+
+/* ============= CART BADGE ============= */
+function updateCartBadges(){
+  const count = state.cart.reduce((s,i)=>s+i.quantity,0);
+  const hb = document.getElementById('cartBadgeHeader');
+  if(hb){hb.textContent=count;hb.classList.toggle('hidden',count===0);}
+  const bb = document.getElementById('cartBadgeBottom');
+  if(bb){bb.textContent=count;bb.classList.toggle('hidden',count===0);}
+}
+
+/* ============= NAV ============= */
+const nav = {
+  go(page, push=true){
+    if(page==='admin' && (!state.currentUser || state.currentUser.role!=='admin')){
+      toast('Silakan login sebagai Admin','error');return;
+    }
+    if(push && state.currentPage!==page) state.pageHistory.push(state.currentPage);
+    if(page==='checkout') state.checkoutStep = 'form';
+    state.currentPage = page;
+    render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+  back(){
+    if(state.pageHistory.length){
+      const p = state.pageHistory.pop();
+      state.currentPage = p;
+      render();
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else this.go('home',false);
+  }
+};
+
+/* ============= PRICING ============= */
+function getPriceForQty(product, qty){
+  if(product.priceTiers && product.priceTiers.length){
+    const baseTier = product.priceTiers[0];
+    const perUnit = baseTier.price / baseTier.qty;
+    return Math.round(perUnit * qty);
+  }
+  return product.price * qty;
+}
+function getStockStatus(stock){
+  if(stock===null || stock===undefined) return {label:'Tersedia',cls:'badge-blue',can:true};
+  if(stock<=0) return {label:'Stok habis',cls:'badge-danger',can:false};
+  if(stock<=5) return {label:'Stok hampir habis',cls:'badge-warning',can:true};
+  return {label:`Stok: ${stock}`,cls:'badge-success',can:true};
+}
+
+/* ============= CART ============= */
+function addToCart(productId, qty=1, extra={}){
+  const p = getProducts().find(x=>x.id===productId);
+  if(!p) return;
+  const stock = getStockStatus(p.stock);
+  if(p.type==='product' && !stock.can){toast('Stok habis','error');return;}
+  if(p.type==='product' && p.stock!==null && qty>p.stock){
+    toast('Jumlah melebihi stok','error');return;}
+  const existing = state.cart.find(i=>i.productId===productId);
+  if(existing) existing.quantity += qty;
+  else state.cart.push({
+    cartId: uid(),productId,quantity:qty,extra:extra||{},
+    notes:'',files:[],deadline:'',serviceTime:'',paymentMethod:''
+  });
+  saveCart();
+  toast('Ditambahkan ke keranjang 🛒');
+}
+function updateCartQty(cartId, delta){
+  const item = state.cart.find(i=>i.cartId===cartId);
+  if(!item) return;
+  const p = getProducts().find(x=>x.id===item.productId);
+  const newQty = item.quantity + delta;
+  if(newQty<1){toast('Jumlah minimal 1','error');return;}
+  if(p.type==='product' && p.stock!==null && newQty>p.stock){
+    toast('Jumlah melebihi stok','error');return;}
+  item.quantity = newQty;
+  saveCart(); render();
+}
+function removeFromCart(cartId){
+  confirmDialog('Hapus Produk','Apakah kamu yakin ingin menghapus produk ini dari keranjang?',()=>{
+    state.cart = state.cart.filter(i=>i.cartId!==cartId);
+    saveCart(); toast('Produk dihapus','info'); render();
+  },'Ya, Hapus',true);
+}
+function cartTotal(){
+  return state.cart.reduce((sum,item)=>{
+    const p = getProducts().find(x=>x.id===item.productId);
+    if(!p) return sum;
+    return sum + getPriceForQty(p, item.quantity);
+  },0);
+}
+function handleFileUpload(cartId, input){
+  const file = input.files[0];
+  if(!file) return;
+  const allowedExt = ['.pdf','.doc','.docx','.jpg','.jpeg','.png'];
+  const ext = '.'+file.name.split('.').pop().toLowerCase();
+  if(!allowedExt.includes(ext)){toast('Format file tidak didukung','error');return;}
+  const item = state.cart.find(i=>i.cartId===cartId);
+  if(!item) return;
+  if(!item.files) item.files=[];
+  item.files.push({id:uid(),file_name:file.name,file_type:file.type||ext,
+    file_size:file.size,uploaded_at:new Date().toISOString(),dataUrl:null});
+  if(file.size < 2*1024*1024){
+    const reader = new FileReader();
+    reader.onload = e=>{
+      item.files[item.files.length-1].dataUrl = e.target.result;
+      saveCart(); render();
+    };
+    reader.readAsDataURL(file);
+  } else {saveCart();render();}
+  toast('File ditambahkan 📎');
+}
+function checkout(){
+  if(state.cart.length===0){toast('Keranjang kosong','error');return;}
+  if(!state.currentUser){toast('Silakan login terlebih dahulu','info');nav.go('login');return;}
+  state.checkoutStep = 'form';
+  nav.go('checkout');
+}
+
+/* ============= CREATE ORDER ============= */
+function createOrder(paymentMethod, buyerData, confirmChecked){
+  if(!confirmChecked){toast('Centang konfirmasi terlebih dahulu','error');return;}
+  const items = [];
+  for(const ci of state.cart){
+    const p = getProducts().find(x=>x.id===ci.productId);
+    if(!p) continue;
+    const sub = getPriceForQty(p, ci.quantity);
+    items.push({
+      productId: p.id, name: p.name, image: p.image,
+      quantity: ci.quantity, unit: p.unit,
+      unit_price: Math.round(sub/ci.quantity), subtotal: sub,
+      notes: ci.notes||'', files: ci.files||[],
+      deadline: ci.deadline||'', serviceTime: ci.serviceTime||'',
+      isService: p.type==='service',
+      bab: p.bab || null
+    });
+  }
+  const total = items.reduce((s,i)=>s+i.subtotal,0);
+  const orderId = generateOrderId();
+  const order = {
+    id: uid(), order_id: orderId, user_id: state.currentUser.id,
+    buyer_name: buyerData.name, buyer_email: buyerData.email,
+    buyer_whatsapp: buyerData.whatsapp,
+    date: today(), time: nowTime(), items, total,
+    payment_method: paymentMethod,
+    payment_status: 'Menunggu Pembayaran',
+    order_status: 'Menunggu Pembayaran',
+    queue: getOrders().filter(o=>o.order_status!=='Selesai').length+1,
+    notes: buyerData.notes||'', deadline: buyerData.deadline||'',
+    created_at: new Date().toISOString(), results: [], rating: null
+  };
+  const orders = getOrders();
+  orders.unshift(order);
+  saveOrders(orders);
+
+  const products = getProducts();
+  for(const it of items){
+    const p = products.find(x=>x.id===it.productId);
+    if(p && p.type==='product' && p.stock!==null){
+      p.stock = Math.max(0, p.stock - it.quantity);
+    }
+  }
+  DB.set('products', products);
+  addNotification(state.currentUser.id, orderId,
+    `Pesanan ${orderId} berhasil dibuat. Menunggu pembayaran.`);
+  addNotification('u_admin', orderId,
+    `Pesanan baru ${orderId} dari ${buyerData.name}.`);
+  state.cart = [];
+  saveCart();
+
+  // Simpan data order di state supaya bisa dipakai untuk buka WA
+  state.currentOrderId = order.id;
+
+  // Cek apakah pesanan berisi Pendampingan Skripsi (bab 1-5) → arahkan ke WhatsApp
+  const skripsiItems = items.filter(it => it.bab);
+  const isSkripsi = skripsiItems.length > 0;
+
+  // Navigasi dulu ke halaman detail pesanan
+  state.currentPage = 'order_detail';
+  state.checkoutStep = 'form';
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  if(isSkripsi){
+    const babList = skripsiItems.map(it=>it.bab).join(', ');
+    const s = DB.get('settings');
+    const waNumber = s.whatsapp.replace(/^0/,'');
+    const msg = `Halo Kak PinkyEdu 👋🏻🎀\n\nSaya sudah melakukan pemesanan dengan nomor *${orderId}*.\n\nSaya ingin berkonsultasi mengenai Pendampingan Skripsi Bab ${babList}. Bisa dibantu informasinya, Kak? Terima kasih ♡`;
+    const waUrl = `https://wa.me/62${waNumber}?text=${encodeURIComponent(msg)}`;
+
+    // Tampilkan modal konfirmasi ke WhatsApp dulu, biar tidak diblokir browser
+    setTimeout(()=>{
+      showModal(`
+        <h3>🎉 Pesanan Berhasil!</h3>
+        <p style="margin-bottom:14px;">Pesanan <b>${orderId}</b> sudah masuk ke sistem PinkyEdu.</p>
+        <div style="background:var(--pink-50);padding:12px;border-radius:12px;margin-bottom:16px;font-size:13px;">
+          <div style="margin-bottom:6px;">📝 Layanan: <b>Pendampingan Skripsi Bab ${babList}</b></div>
+          <div>💬 Lanjutkan konsultasi ke WhatsApp Admin untuk proses pendampingan.</div>
+        </div>
+        <div class="modal-actions" style="flex-direction:column;">
+          <a href="${waUrl}" target="_blank" class="btn btn-wa" style="width:100%;text-decoration:none;" onclick="closeModal()">
+            <i class="fab fa-whatsapp"></i> Lanjut Konsultasi via WhatsApp
+          </a>
+          <button class="btn btn-secondary" onclick="closeModal()" style="width:100%;">Nanti Saja</button>
+        </div>
+      `);
+    }, 400);
+  } else {
+    toast('Pesanan berhasil dibuat! 🎉');
+  }
+}
+
+/* ============= RENDER NAVS ============= */
+function renderBottomNav(){
+  const pages = [
+    {id:'home',icon:'fa-home',label:'Beranda'},
+    {id:'shop',icon:'fa-store',label:'Jualan'},
+    {id:'cart',icon:'fa-shopping-cart',label:'Keranjang'},
+    {id:'orders',icon:'fa-box',label:'Pesanan'},
+    {id:'profile',icon:'fa-user',label:'Profil'}
+  ];
+  const el = document.getElementById('bottomNav');
+  el.innerHTML = pages.map(p=>`
+    <button class="${state.currentPage===p.id?'active':''}" onclick="nav.go('${p.id}')">
+      <i class="fas ${p.icon}"></i><span>${p.label}</span>
+      ${p.id==='cart'?`<span class="badge hidden" id="cartBadgeBottom">0</span>`:''}
+    </button>
+  `).join('');
+  updateCartBadges();
+}
+function renderDesktopNav(){
+  const el = document.getElementById('desktopNav');
+  if(!el) return;
+  const pages = [
+    {id:'home',label:'Beranda'},{id:'shop',label:'Jualan'},
+    {id:'cart',label:'Keranjang'},{id:'orders',label:'Pesanan'},
+    {id:'profile',label:'Profil'}
+  ];
+  let html = pages.map(p=>`<button class="${state.currentPage===p.id?'active':''}" onclick="nav.go('${p.id}')">${p.label}</button>`).join('');
+  if(state.currentUser && state.currentUser.role==='admin'){
+    html += `<button onclick="nav.go('admin')" style="color:var(--pink-600)"><i class="fas fa-cog"></i> Admin</button>`;
+  }
+  el.innerHTML = html;
+}
+
+/* ============= PAGE: HOME ============= */
+function renderHome(){
+  const products = getProducts();
+  const featured = products.slice(0,4);
+  return `
+    <div class="hero"><div class="hero-content">
+      <h1>Selamat Datang di PinkyEdu 💗</h1>
+      <p>Toko alat tulis & jasa akademik kesayangan mahasiswa!</p>
+      <div class="quote">"Sedikit demi sedikit, tugas selesai satu per satu." ✨</div>
+      <button class="btn btn-primary" onclick="nav.go('shop')">Lihat Jualan <i class="fas fa-arrow-right"></i></button>
+    </div></div>
+
+    <div class="info-grid">
+      <div class="info-item"><i class="fas fa-tag"></i> Harga produk sesuai jumlah pembelian</div>
+      <div class="info-item"><i class="fas fa-graduation-cap"></i> Tersedia jasa akademik</div>
+      <div class="info-item"><i class="fas fa-paperclip"></i> File dapat diunggah untuk layanan tertentu</div>
+      <div class="info-item"><i class="fas fa-clock"></i> Tersedia pilihan waktu dan deadline</div>
+      <div class="info-item"><i class="fas fa-box"></i> Pesanan dapat dipantau melalui menu Pesanan</div>
+      <div class="info-item"><i class="fas fa-envelope"></i> Hasil layanan dikirim via website/email</div>
+      <div class="info-item"><i class="fas fa-headset"></i> Bantuan via WhatsApp Admin</div>
+    </div>
+
+    <div class="section-title">
+      <h2>Produk & Jasa Populer ✨</h2>
+      <button onclick="nav.go('shop')">Lihat semua →</button>
+    </div>
+    <div class="product-grid">${featured.map(p=>renderProductCard(p)).join('')}</div>
+
+    <div class="card mt-16" style="background:linear-gradient(135deg,#e6f0ff,#fff5f8);border:1px solid var(--soft-blue-2);">
+      <div class="flex-between" style="flex-wrap:wrap;gap:12px;">
+        <div>
+          <h3 style="font-size:16px;margin-bottom:4px;">Butuh bantuan? Hubungi Admin 💗</h3>
+          <p class="fs-13 text-light">Kami siap membantu kamu via WhatsApp.</p>
+        </div>
+        <button class="btn btn-wa" onclick="contactAdmin()">
+          <i class="fab fa-whatsapp"></i> Chat Admin
+        </button>
+      </div>
+    </div>
+
+    <div class="card mt-16 text-center">
+      <p class="fs-13 text-light mb-8">Ikuti sosial media kami 🎀</p>
+      <div class="flex" style="justify-content:center;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-outline btn-sm" onclick="openInstagram()">
+          <i class="fab fa-instagram"></i> Instagram</button>
+        <button class="btn btn-outline btn-sm" onclick="openTiktok()">
+          <i class="fab fa-tiktok"></i> TikTok</button>
+      </div>
+    </div>
+  `;
+}
+
+/* ============= PRODUCT CARD ============= */
+function renderProductCard(p){
+  const stock = getStockStatus(p.stock);
+  const isService = p.type==='service';
+  return `
+    <div class="product-card ${isService?'service':''}">
+      <div class="product-img" onclick="openProductDetail('${p.id}')">
+        ${isService?'<span class="service-tag">JASA</span>':''}${p.image}
+      </div>
+      <div class="product-body">
+        <div class="product-name" onclick="openProductDetail('${p.id}')">${p.name}</div>
+        <div>
+          <div class="product-price">${fmt(p.price)}</div>
+          <div class="product-unit">/ ${p.unit}</div>
+        </div>
+        <div class="product-meta">
+          ${isService
+            ? `<span class="badge-pill badge-blue"><i class="fas fa-star"></i> Layanan</span>`
+            : `<span class="badge-pill ${stock.cls}">${stock.label}</span>`}
+        </div>
+        <div class="product-actions">
+          <button class="btn btn-outline btn-sm" onclick="event.stopPropagation();openProductDetail('${p.id}')">Detail</button>
+          <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();${isService?'openProductDetail':'addToCart'}('${p.id}')" ${(!isService && !stock.can)?'disabled':''}>
+            <i class="fas fa-cart-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/* ============= PAGE: SHOP ============= */
+function renderShop(){
+  const cats = ['all','Alat Tulis','Produk Akademik','Jasa Akademik'];
+  const catLabels = {all:'Semua','Alat Tulis':'Alat Tulis',
+    'Produk Akademik':'Produk Akademik','Jasa Akademik':'Jasa Akademik'};
+  let products = getProducts();
+  if(state.filters.category!=='all') products = products.filter(p=>p.category===state.filters.category);
+  if(state.filters.search) products = products.filter(p=>p.name.toLowerCase().includes(state.filters.search.toLowerCase()));
+  if(state.filters.type==='product') products = products.filter(p=>p.type==='product');
+  if(state.filters.type==='service') products = products.filter(p=>p.type==='service');
+
+  return `
+    <div class="page-header">
+      <button class="back-btn" onclick="nav.go('home')"><i class="fas fa-arrow-left"></i></button>
+      <h1>Jualan PinkyEdu 🛍️</h1>
+    </div>
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="shopSearch" placeholder="Cari produk atau jasa..."
+        value="${state.filters.search}" onkeyup="shop.search(this.value)">
+    </div>
+    <div class="chips">
+      ${cats.map(c=>`<button class="chip ${state.filters.category===c?'active':''}" onclick="shop.setCategory('${c}')">${catLabels[c]}</button>`).join('')}
+    </div>
+    <div class="chips">
+      <button class="chip ${state.filters.type==='all'?'active':''}" onclick="shop.setType('all')">Semua</button>
+      <button class="chip ${state.filters.type==='product'?'active':''}" onclick="shop.setType('product')">📦 Produk</button>
+      <button class="chip ${state.filters.type==='service'?'active':''}" onclick="shop.setType('service')">📚 Jasa</button>
+    </div>
+    ${products.length===0
+      ? `<div class="empty"><div class="empty-icon">🔍</div><h3>Produk tidak ditemukan</h3><p>Coba kata kunci atau kategori lain.</p></div>`
+      : `<div class="product-grid">${products.map(p=>renderProductCard(p)).join('')}</div>`}
+  `;
+}
+const shop = {
+  search(v){
+    state.filters.search = v;
+    if(state.currentPage!=='shop'){nav.go('shop');return;}
+    const val = v;
+    render();
+    const inp = document.getElementById('shopSearch');
+    if(inp){inp.value=val;inp.focus();inp.setSelectionRange(val.length,val.length);}
+  },
+  setCategory(c){state.filters.category=c;render();},
+  setType(t){state.filters.type=t;render();}
+};
+
+/* ============= PAGE: PRODUCT DETAIL ============= */
+function renderProductDetail(productId){
+  const p = getProducts().find(x=>x.id===productId);
+  if(!p) return `<div class="empty"><h3>Produk tidak ditemukan</h3></div>`;
+  const stock = getStockStatus(p.stock);
+  const isService = p.type==='service';
+  const detailQty = state.detailQty && state.detailProductId===productId ? state.detailQty : 1;
+  const total = getPriceForQty(p, detailQty);
+  const maxQty = p.stock!==null ? p.stock : 99;
+
+  return `
+    <div class="page-header">
+      <button class="back-btn" onclick="nav.back()"><i class="fas fa-arrow-left"></i></button>
+      <h1>Detail Produk</h1>
+    </div>
+    <div class="detail-img">${p.image}</div>
+    <h2 style="font-size:18px;margin-bottom:6px;">${p.name}</h2>
+    <div class="flex gap-8" style="flex-wrap:wrap;margin-bottom:10px;">
+      <span class="badge-pill badge-pink">${p.category}</span>
+      ${isService
+        ? `<span class="badge-pill badge-blue"><i class="fas fa-star"></i> Jasa</span>`
+        : `<span class="badge-pill ${stock.cls}">${stock.label}</span>`}
+    </div>
+    <div class="detail-price">${fmt(total)}</div>
+    <div class="fs-13 text-light">Harga per ${p.unit} × ${detailQty}</div>
+    <div class="detail-desc">${p.description}</div>
+
+    ${p.priceTiers ? `
+      <div class="card mb-16" style="background:var(--pink-50);">
+        <div class="fs-13 fw-700 mb-8">💗 Harga berdasarkan jumlah:</div>
+        ${p.priceTiers.map(t=>`<div class="flex-between fs-13" style="padding:3px 0;">
+          <span>${t.qty} ${p.unit.includes('lembar')?'lembar':p.unit.includes('daftar')?'daftar pustaka':'alat'}</span>
+          <b class="text-pink">${fmt(t.price)}</b>
+        </div>`).join('')}
+      </div>`:''}
+
+    <div class="detail-info-grid">
+      <div class="di">Satuan <b>${p.unit}</b></div>
+      <div class="di">${isService?'Jenis':'Stok'} <b>${isService?'Layanan':(p.stock===null?'∞':p.stock)}</b></div>
+    </div>
+
+    ${p.bab ? `
+      <div class="card mb-16" style="background:linear-gradient(135deg,#fff5f8,#ffe6ef);border:1.5px solid var(--pink-300);">
+        <div class="fs-13 fw-700 mb-8">📝 Layanan Pendampingan Skripsi Bab ${p.bab}</div>
+        <p class="fs-12 text-light mb-8">
+          Layanan ini mencakup pendampingan, review, penyuntingan, revisi dasar, dan pemberian masukan berdasarkan karya mahasiswa.
+        </p>
+        <p class="fs-12 text-light">
+          📎 Kamu dapat mengunggah karya atau bahan yang ingin direview saat checkout di keranjang.
+        </p>
+      </div>` : ''}
+
+    <div class="card mb-16">
+      <div class="fs-13 fw-700 mb-8">Jumlah:</div>
+      <div class="flex-between">
+        <div class="qty-control">
+          <button onclick="detailQty(${detailQty-1})" ${detailQty<=1?'disabled':''}><i class="fas fa-minus"></i></button>
+          <span>${detailQty}</span>
+          <button onclick="detailQty(${detailQty+1})" ${detailQty>=maxQty?'disabled':''}><i class="fas fa-plus"></i></button>
+        </div>
+        <div style="text-align:right;">
+          <div class="fs-12 text-light">Subtotal</div>
+          <div class="fw-700 text-pink" style="font-size:16px;">${fmt(total)}</div>
+        </div>
+      </div>
+      ${(!isService && p.stock<=5 && p.stock>0) ? `<div class="fs-12" style="color:var(--warning);margin-top:8px;"><i class="fas fa-exclamation-triangle"></i> Stok hampir habis, segera pesan!</div>`:''}
+      ${(!isService && p.stock<=0) ? `<div class="fs-12" style="color:var(--danger);margin-top:8px;"><i class="fas fa-times-circle"></i> Stok habis</div>`:''}
+    </div>
+
+    <div class="flex gap-8">
+      <button class="btn btn-secondary btn-block" onclick="detailAddToCart('${p.id}',${detailQty})" ${(!isService && !stock.can)?'disabled':''}>
+        <i class="fas fa-cart-plus"></i> Keranjang
+      </button>
+      <button class="btn btn-primary btn-block" onclick="detailBuyNow('${p.id}',${detailQty})" ${(!isService && !stock.can)?'disabled':''}>
+        <i class="fas fa-bolt"></i> Beli Sekarang
+      </button>
+    </div>
+  `;
+}
+function detailQty(q){
+  if(q<1)return;
+  const p = getProducts().find(x=>x.id===state.detailProductId);
+  if(p && p.stock!==null && q>p.stock){toast('Jumlah melebihi stok','error');return;}
+  state.detailQty = q;
+  render();
+}
+function detailAddToCart(id,qty){addToCart(id,qty);nav.go('cart');}
+function detailBuyNow(id,qty){addToCart(id,qty);setTimeout(()=>nav.go('cart'),200);}
+function openProductDetail(id){
+  state.detailProductId = id;
+  state.detailQty = 1;
+  state.pageHistory.push(state.currentPage);
+  state.currentPage = 'product_detail';
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ============= PAGE: CART ============= */
+function renderCart(){
+  if(state.cart.length===0){
+    return `
+      <div class="page-header">
+        <button class="back-btn" onclick="nav.go('home')"><i class="fas fa-arrow-left"></i></button>
+        <h1>Keranjang 🛒</h1>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">🛒</div>
+        <h3>Keranjang kamu masih kosong 💗</h3>
+        <p>Yuk mulai belanja alat tulis & jasa akademik!</p>
+        <button class="btn btn-primary" onclick="nav.go('shop')">Mulai Belanja</button>
+      </div>`;
+  }
+  const total = cartTotal();
+  return `
+    <div class="page-header">
+      <button class="back-btn" onclick="nav.back()"><i class="fas fa-arrow-left"></i></button>
+      <h1>Keranjang 🛒 (${state.cart.reduce((s,i)=>s+i.quantity,0)})</h1>
+    </div>
+    ${state.cart.map(item=>{
+      const p = getProducts().find(x=>x.id===item.productId);
+      if(!p) return '';
+      const sub = getPriceForQty(p, item.quantity);
+      const stock = getStockStatus(p.stock);
+      const isService = p.type==='service';
+      const maxQ = p.stock!==null ? p.stock : 999;
+      return `
+        <div class="cart-item">
+          <div class="cart-item-img">${p.image}</div>
+          <div class="cart-item-body">
+            <div class="cart-item-name">${p.name}</div>
+            <div class="cart-item-price">${fmt(p.price)} / ${p.unit}</div>
+            ${isService?`<div class="fs-12"><span class="badge-pill badge-blue">Jasa</span></div>`:`<div class="fs-12"><span class="badge-pill ${stock.cls}">${stock.label}</span></div>`}
+            <div class="flex-between mt-8">
+              <div class="qty-control">
+                <button onclick="updateCartQty('${item.cartId}',-1)" ${item.quantity<=1?'disabled':''}><i class="fas fa-minus"></i></button>
+                <span>${item.quantity}</span>
+                <button onclick="updateCartQty('${item.cartId}',1)" ${item.quantity>=maxQ?'disabled':''}><i class="fas fa-plus"></i></button>
+              </div>
+              <div class="cart-item-sub">${fmt(sub)}</div>
+            </div>
+            ${isService ? `
+              <div class="mt-8">
+                <label class="fs-12 fw-700">📎 Upload File (opsional)</label>
+                <input type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                  onchange="handleFileUpload('${item.cartId}',this)" style="font-size:11px;margin-top:4px;width:100%;">
+                ${(item.files||[]).map((f,fi)=>`
+                  <div class="file-item">
+                    <div class="fi-icon"><i class="fas fa-file"></i></div>
+                    <div class="fi-info">
+                      <div class="fi-name">${f.file_name}</div>
+                      <div class="fi-meta">${(f.file_size/1024).toFixed(1)} KB</div>
+                    </div>
+                    <button class="fi-del" onclick="removeFile('${item.cartId}',${fi})"><i class="fas fa-times"></i></button>
+                  </div>`).join('')}
+              </div>
+              <div class="mt-8">
+                <label class="fs-12 fw-700">📅 Deadline (opsional)</label>
+                <input type="date" value="${item.deadline||''}" min="${today()}"
+                  onchange="setItemField('${item.cartId}','deadline',this.value)"
+                  style="font-size:12px;margin-top:4px;width:100%;padding:6px 10px;border:1.5px solid var(--pink-200);border-radius:8px;">
+              </div>
+              <div class="mt-8">
+                <label class="fs-12 fw-700">🕐 Waktu yang diinginkan</label>
+                <input type="time" value="${item.serviceTime||''}"
+                  onchange="setItemField('${item.cartId}','serviceTime',this.value)"
+                  style="font-size:12px;margin-top:4px;width:100%;padding:6px 10px;border:1.5px solid var(--pink-200);border-radius:8px;">
+              </div>`:''}
+            <div class="mt-8">
+              <label class="fs-12 fw-700">📝 Catatan</label>
+              <textarea placeholder="Tulis catatan..."
+                onchange="setItemField('${item.cartId}','notes',this.value)"
+                style="font-size:12px;margin-top:4px;width:100%;min-height:40px;padding:6px 10px;border:1.5px solid var(--pink-200);border-radius:8px;resize:vertical;">${item.notes||''}</textarea>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart('${item.cartId}')"><i class="fas fa-trash"></i> Hapus</button>
+          </div>
+        </div>`;
+    }).join('')}
+    <button class="btn btn-outline btn-block mt-8" onclick="nav.go('shop')"><i class="fas fa-plus"></i> Tambah Produk Lain</button>
+    <div class="summary">
+      <div class="summary-row"><span>Total Item</span><b>${state.cart.reduce((s,i)=>s+i.quantity,0)}</b></div>
+      <div class="summary-row total"><span>Total</span><span>${fmt(total)}</span></div>
+      <button class="btn btn-primary btn-block mt-16" onclick="checkout()">
+        Checkout <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>`;
+}
+function setItemField(cartId, field, val){
+  const item = state.cart.find(i=>i.cartId===cartId);
+  if(item){item[field]=val;saveCart();}
+}
+function removeFile(cartId, idx){
+  const item = state.cart.find(i=>i.cartId===cartId);
+  if(item && item.files){item.files.splice(idx,1);saveCart();render();}
+}
+
+/* ============= PAGE: CHECKOUT ============= */
+function renderCheckout(){
+  if(state.cart.length===0){nav.go('cart');return '';}
+  const total = cartTotal();
+  const u = state.currentUser;
+  const hasSkripsi = state.cart.some(ci => {
+    const p = getProducts().find(x=>x.id===ci.productId);
+    return p && p.bab;
+  });
+  const isPaymentStep = state.checkoutStep === 'payment';
+
+  // Jika step == payment, tampilkan hanya bagian pembayaran
+  if(isPaymentStep){
+    return `
+      <div class="page-header">
+        <button class="back-btn" onclick="state.checkoutStep='form';render();">
+          <i class="fas fa-arrow-left"></i></button>
+        <h1>Pembayaran 💳</h1>
+      </div>
+
+      <div class="card mb-16" style="background:linear-gradient(135deg,#e6ffe6,#f0fff0);border:1.5px solid #b3e6b3;">
+        <div class="fs-13 fw-700 mb-8">✅ Pesanan Siap Dibayar</div>
+        <p class="fs-12 text-light">Pilih metode pembayaran, lalu bayar sesuai nominal.</p>
+      </div>
+
+      <div class="card mb-16">
+        <h3 style="font-size:15px;margin-bottom:12px;">💳 Metode Pembayaran</h3>
+        <div class="payment-options" id="paymentOptions">${renderPaymentOptions()}</div>
+        <div id="paymentDetailBox"></div>
+      </div>
+
+      <div class="flex gap-8">
+        <button class="btn btn-secondary" onclick="state.checkoutStep='form';render();" style="flex:1;">
+          ← Kembali dan Edit
+        </button>
+      </div>
+    `;
+  }
+
+  // Step == form
+  return `
+    <div class="page-header">
+      <button class="back-btn" onclick="nav.go('cart')"><i class="fas fa-arrow-left"></i></button>
+      <h1>Checkout 📋</h1>
+    </div>
+    <div class="card mb-16">
+      <h3 style="font-size:15px;margin-bottom:12px;">📦 Data Pembeli</h3>
+      <div class="form-group"><label>Nama Lengkap</label>
+        <input type="text" id="coName" value="${u?u.name:''}" placeholder="Nama kamu"></div>
+      <div class="form-group"><label>Email</label>
+        <input type="email" id="coEmail" value="${u?u.email:''}" placeholder="email@example.com"></div>
+      <div class="form-group"><label>WhatsApp</label>
+        <input type="tel" id="coWA" value="${u?u.whatsapp:''}" placeholder="08xxxxxxxxxx"></div>
+    </div>
+    <div class="card mb-16">
+      <h3 style="font-size:15px;margin-bottom:12px;">🛍️ Detail Pesanan</h3>
+      ${state.cart.map(item=>{
+        const p = getProducts().find(x=>x.id===item.productId);
+        if(!p) return '';
+        const sub = getPriceForQty(p, item.quantity);
+        return `<div class="flex-between mb-8" style="padding:8px 0;border-bottom:1px dashed var(--pink-200);">
+          <div>
+            <div class="fs-13 fw-700">${p.image} ${p.name}</div>
+            <div class="fs-12 text-light">${item.quantity} × ${fmt(Math.round(sub/item.quantity))}</div>
+            ${item.files && item.files.length ? `<div class="fs-12 text-pink">📎 ${item.files.length} file</div>`:''}
+            ${item.deadline ? `<div class="fs-12 text-light">Deadline: ${item.deadline}</div>`:''}
+          </div>
+          <div class="fw-700">${fmt(sub)}</div>
+        </div>`;
+      }).join('')}
+      <div class="summary-row total" style="margin-top:8px;"><span>Total</span><span>${fmt(total)}</span></div>
+    </div>
+    <div class="card mb-16">
+      <h3 style="font-size:15px;margin-bottom:12px;">📝 Catatan Tambahan</h3>
+      <div class="form-group"><textarea id="coNotes" placeholder="Catatan untuk pesanan..." style="min-height:60px;"></textarea></div>
+      <div class="form-group"><label>Permintaan selesai tanggal (opsional)</label>
+        <input type="date" id="coDeadline" min="${today()}"></div>
+      <div class="fs-12 text-light" style="padding:8px;background:var(--pink-50);border-radius:8px;">
+        ⏰ Untuk jasa daftar pustaka, pemesanan maksimal dilakukan H-1.
+      </div>
+    </div>
+    ${hasSkripsi ? `
+      <div class="card mb-16" style="background:linear-gradient(135deg,#e6f0ff,#f0f7ff);border:1.5px solid var(--soft-blue-2);">
+        <div class="fs-13 fw-700 mb-8"><i class="fas fa-info-circle" style="color:#4a7bff;"></i> Informasi Pendampingan Skripsi</div>
+        <p class="fs-12 text-light">
+          Setelah pembayaran dikonfirmasi, kamu akan diarahkan ke WhatsApp Admin untuk konsultasi lanjutan mengenai Pendampingan Skripsi.
+        </p>
+      </div>` : ''}
+    <div class="checkbox-row">
+      <input type="checkbox" id="coConfirm">
+      <label for="coConfirm">Saya sudah memastikan bahwa informasi pesanan sudah benar.</label>
+    </div>
+    <div class="flex gap-8">
+      <button class="btn btn-secondary" onclick="nav.go('cart')" style="flex:1;">← Kembali</button>
+      <button class="btn btn-primary" onclick="goToPayment()" style="flex:2;">
+        Lanjutkan ke Pembayaran <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>`;
+}
+function renderPaymentOptions(){
+  const methods = [
+    {id:'QRIS',label:'QRIS',icon:'fa-qrcode'},
+    {id:'Bank Transfer',label:'Transfer Bank',icon:'fa-university'},
+    {id:'Virtual Account',label:'Virtual Account',icon:'fa-credit-card'},
+    {id:'GoPay',label:'GoPay',icon:'fa-wallet'},
+    {id:'OVO',label:'OVO',icon:'fa-wallet'},
+    {id:'DANA',label:'DANA',icon:'fa-wallet'},
+    {id:'ShopeePay',label:'ShopeePay',icon:'fa-wallet'},
+    {id:'LinkAja',label:'LinkAja',icon:'fa-wallet'},
+    {id:'Mobile Banking',label:'Mobile Banking',icon:'fa-mobile-alt'}
+  ];
+  const sel = state.checkoutPayment || 'QRIS';
+  return methods.map(m=>`
+    <div class="payment-option ${sel===m.id?'active':''}" onclick="selectPayment('${m.id}')">
+      <i class="fas ${m.icon}"></i><div>${m.label}</div>
+    </div>`).join('');
+}
+function selectPayment(id){state.checkoutPayment = id;render();showPaymentDetail(id);}
+function showPaymentDetail(id){
+  const total = cartTotal();
+  const s = DB.get('settings');
+  let html = '';
+  if(id==='QRIS'){
+    html = `<div class="payment-detail">
+      <div class="fs-13 fw-700 mb-8">📱 Pembayaran QRIS</div>
+      <div class="qris-box">
+        <div class="qris-img"><i class="fas fa-qrcode"></i></div>
+        <div class="fs-12 mt-8">Scan QRIS untuk membayar</div>
+        <div class="fs-12 mt-8">Penerima: <b>${s.qrisReceiver}</b></div>
+        <div class="fs-12">Total: <b class="text-pink">${fmt(total)}</b></div>
+      </div>
+      <div class="fs-12 text-light mt-8" style="margin-top:10px;">
+        <i class="fas fa-info-circle"></i> Setelah membayar, klik tombol "Saya Sudah Membayar".
+      </div></div>`;
+  } else if(id==='Bank Transfer'){
+    html = `<div class="payment-detail">
+      <div class="fs-13 fw-700 mb-8">🏦 Transfer Bank</div>
+      <div class="row"><span>Bank</span><b>${s.bankName}</b></div>
+      <div class="row"><span>No. Rekening</span><b>${s.bankAccount} <button class="copy-btn" onclick="copyText('${s.bankAccount}')">Salin</button></b></div>
+      <div class="row"><span>Atas Nama</span><b>${s.bankHolder}</b></div>
+      <div class="row"><span>Jumlah</span><b class="text-pink">${fmt(total)}</b></div>
+      <div class="fs-12 text-light mt-8">Transfer sesuai nominal, lalu klik "Saya Sudah Membayar".</div>
+    </div>`;
+  } else if(id==='Virtual Account'){
+    const va = '8808'+Date.now().toString().slice(-8);
+    html = `<div class="payment-detail">
+      <div class="fs-13 fw-700 mb-8">💳 Virtual Account</div>
+      <div class="row"><span>Bank</span><b>${s.bankName}</b></div>
+      <div class="row"><span>No. VA</span><b>${va} <button class="copy-btn" onclick="copyText('${va}')">Salin</button></b></div>
+      <div class="row"><span>Jumlah</span><b class="text-pink">${fmt(total)}</b></div>
+      <div class="row"><span>Batas</span><b>24 jam</b></div>
+    </div>`;
+  } else {
+    const phone = '0812-3456-7890';
+    html = `<div class="payment-detail">
+      <div class="fs-13 fw-700 mb-8">📱 ${id}</div>
+      <div class="row"><span>Nomor Tujuan</span><b>${phone} <button class="copy-btn" onclick="copyText('${phone.replace(/-/g,'')}')">Salin</button></b></div>
+      <div class="row"><span>Jumlah</span><b class="text-pink">${fmt(total)}</b></div>
+      <div class="fs-12 text-light mt-8">Kirim ke nomor di atas, lalu klik "Saya Sudah Membayar".</div>
+    </div>`;
+  }
+  html += `<button type="button" class="btn btn-primary btn-block mt-16" onclick="submitCheckout()">
+    <i class="fas fa-check"></i> Saya Sudah Membayar</button>`;
+  const box = document.getElementById('paymentDetailBox');
+  if(box) box.innerHTML = html;
+}
+function copyText(t){
+  navigator.clipboard.writeText(t).then(()=>toast('Berhasil disalin 📋','success'))
+    .catch(()=>toast('Gagal menyalin','error'));
+}
+
+/* ---- FIX: Fungsi BARU untuk pindah ke step pembayaran ---- */
+function goToPayment(){
+  const name = document.getElementById('coName')?.value.trim();
+  const email = document.getElementById('coEmail')?.value.trim();
+  const wa = document.getElementById('coWA')?.value.trim();
+  const confirm = document.getElementById('coConfirm')?.checked;
+  if(!name){toast('Nama wajib diisi','error');return;}
+  if(!email){toast('Email wajib diisi','error');return;}
+  if(!wa){toast('WhatsApp wajib diisi','error');return;}
+  if(!confirm){toast('Centang konfirmasi terlebih dahulu','error');return;}
+
+  // Simpan data buyer sementara di state
+  state.tempBuyer = {
+    name,
+    email,
+    whatsapp: wa,
+    notes: document.getElementById('coNotes')?.value.trim() || '',
+    deadline: document.getElementById('coDeadline')?.value || ''
+  };
+
+  // Pindah ke step pembayaran
+  state.checkoutStep = 'payment';
+  state.checkoutPayment = state.checkoutPayment || 'QRIS';
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitCheckout(){
+  // Ambil data buyer dari state (sudah disimpan di goToPayment)
+  const buyerData = state.tempBuyer;
+  if(!buyerData){
+    toast('Data pembeli tidak ditemukan. Silakan ulangi checkout.','error');
+    state.checkoutStep = 'form';
+    render();
+    return;
+  }
+  const payment = state.checkoutPayment || 'QRIS';
+  createOrder(payment, buyerData, true);
+  state.tempBuyer = null;
+}
+
+/* ============= PAGE: ORDER DETAIL ============= */
+function renderOrderDetail(orderId){
+  const orders = getOrders();
+  const order = orders.find(o=>o.id===orderId || o.order_id===orderId);
+  if(!order) return `<div class="empty"><h3>Pesanan tidak ditemukan</h3></div>`;
+  const steps = ['Menunggu Pembayaran','Pembayaran Diterima','Menunggu Diproses','Proses','Selesai'];
+  const currentIdx = steps.indexOf(order.order_status)>=0 ? steps.indexOf(order.order_status) : 0;
+  const hasSkripsi = order.items.some(it => it.bab);
+  return `
+    <div class="page-header">
+      <button class="back-btn" onclick="nav.go('orders')"><i class="fas fa-arrow-left"></i></button>
+      <h1>Detail Pesanan</h1>
+    </div>
+    <div class="card mb-16">
+      <div class="flex-between mb-8">
+        <div>
+          <div class="order-id">${order.order_id}</div>
+          <div class="fs-12 text-light">${order.date} • ${order.time}</div>
+        </div>
+        <span class="badge-pill badge-pink">${order.order_status}</span>
+      </div>
+      <div class="progress">
+        ${steps.map((s,i)=>`
+          <div class="progress-step ${i<currentIdx?'done':''} ${i===currentIdx?'active':''}">
+            <div class="progress-dot">${i<currentIdx?'✓':''}</div>
+            <div class="progress-label">${s}${i===currentIdx?' <small>● saat ini</small>':''}</div>
+          </div>`).join('')}
+      </div>
+      ${order.queue ? `<div class="card" style="background:var(--pink-50);padding:10px;text-align:center;font-size:13px;">
+        <i class="fas fa-users"></i> Antrean kamu: <b class="text-pink">#${String(order.queue).padStart(2,'0')}</b>
+      </div>`:''}
+    </div>
+
+    ${hasSkripsi ? `
+      <div class="card mb-16" style="background:linear-gradient(135deg,#e6ffe6,#f0fff0);border:1.5px solid #b3e6b3;">
+        <div class="fs-13 fw-700 mb-8"><i class="fab fa-whatsapp" style="color:#22c55e;"></i> Konsultasi Pendampingan Skripsi</div>
+        <p class="fs-12 text-light mb-8">
+          Setelah melakukan pembayaran, silakan lanjutkan konsultasi ke WhatsApp Admin dengan menyebutkan nomor pesanan <b>${order.order_id}</b>.
+        </p>
+        <a href="javascript:void(0)" onclick="consultSkripsiOrder('${order.order_id}')" class="btn btn-wa btn-block btn-sm" style="text-decoration:none;">
+          <i class="fab fa-whatsapp"></i> Lanjut Konsultasi via WhatsApp
+        </a>
+      </div>` : ''}
+
+    <div class="card mb-16">
+      <h3 style="font-size:14px;margin-bottom:10px;">🛍️ Item Pesanan</h3>
+      ${order.items.map(it=>`
+        <div class="order-item-row mb-8">
+          <div class="oi-img">${it.image}</div>
+          <div style="flex:1;">
+            <div class="fw-700 fs-13">${it.name}</div>
+            <div class="fs-12 text-light">${it.quantity} × ${fmt(it.unit_price)}</div>
+            ${it.notes?`<div class="fs-12 text-light">📝 ${it.notes}</div>`:''}
+            ${it.deadline?`<div class="fs-12 text-light">📅 Deadline: ${it.deadline}</div>`:''}
+            ${it.files && it.files.length?`<div class="fs-12 text-pink">📎 ${it.files.length} file</div>`:''}
+          </div>
+          <div class="fw-700">${fmt(it.subtotal)}</div>
+        </div>`).join('')}
+      <div class="summary-row total"><span>Total</span><span>${fmt(order.total)}</span></div>
+    </div>
+    <div class="card mb-16">
+      <h3 style="font-size:14px;margin-bottom:10px;">💳 Pembayaran</h3>
+      <div class="summary-row"><span>Metode</span><b>${order.payment_method}</b></div>
+      <div class="summary-row"><span>Status</span><b>${order.payment_status}</b></div>
+    </div>
+    ${order.results && order.results.length ? `
+      <div class="card mb-16" style="background:linear-gradient(135deg,#e6ffe6,#f0fff0);border:1.5px solid #b3e6b3;">
+        <h3 style="font-size:14px;margin-bottom:10px;">✅ File Hasil Tersedia</h3>
+        ${order.results.map((r,i)=>`
+          <div class="file-item">
+            <div class="fi-icon"><i class="fas fa-file-download"></i></div>
+            <div class="fi-info">
+              <div class="fi-name">${r.file_name}</div>
+              <div class="fi-meta">${(r.file_size/1024).toFixed(1)} KB</div>
+            </div>
+            <button class="copy-btn" onclick="downloadResult('${order.id}',${i})"><i class="fas fa-download"></i></button>
+          </div>`).join('')}
+      </div>`:''}
+    ${order.order_status==='Selesai' ? `
+      <div class="card mb-16">
+        <h3 style="font-size:14px;margin-bottom:10px;">⭐ Beri Rating</h3>
+        ${order.rating ? `
+          <div class="text-center">
+            <div style="font-size:24px;">${'⭐'.repeat(order.rating)}</div>
+            <div class="fs-12 text-light mt-8">Terima kasih atas ratingnya!</div>
+          </div>` : `
+          <div class="stars" id="ratingStars">
+            ${[1,2,3,4,5].map(i=>`<i class="far fa-star" onclick="setRating(${i})"></i>`).join('')}
+          </div>
+          <div class="form-group mt-8">
+            <textarea id="reviewText" placeholder="Tulis ulasan singkat..." style="min-height:50px;"></textarea>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="submitRating('${order.id}')">Kirim Rating</button>`}
+      </div>`:''}
+    ${order.order_status==='Menunggu Pembayaran' ? `
+      <button class="btn btn-danger btn-block" onclick="cancelOrder('${order.id}')">Batalkan Pesanan</button>`:''}
+  `;
+}
+function setRating(r){
+  state.tempRating = r;
+  document.querySelectorAll('#ratingStars i').forEach((el,i)=>{
+    el.className = i<r ? 'fas fa-star active' : 'far fa-star';
+  });
+}
+function submitRating(orderId){
+  if(!state.tempRating){toast('Pilih rating terlebih dahulu','error');return;}
+  const review = document.getElementById('reviewText')?.value||'';
+  const orders = getOrders();
+  const o = orders.find(x=>x.id===orderId);
+  if(o){o.rating = state.tempRating;}
+  saveOrders(orders);
+  const ratings = getRatings();
+  ratings.push({id:uid(),order_id:o.order_id,user_id:state.currentUser.id,
+    rating:state.tempRating,review,created_at:new Date().toISOString()});
+  saveRatings(ratings);
+  toast('Terima kasih atas ratingnya! ⭐');
+  render();
+}
+function cancelOrder(orderId){
+  confirmDialog('Batalkan Pesanan','Apakah kamu yakin ingin membatalkan pesanan ini?',()=>{
+    const orders = getOrders();
+    const o = orders.find(x=>x.id===orderId);
+    if(o){
+      o.order_status = 'Dibatalkan';
+      o.payment_status = 'Dibatalkan';
+      saveOrders(orders);
+      const products = getProducts();
+      for(const it of o.items){
+        const p = products.find(x=>x.id===it.productId);
+        if(p && p.type==='product' && p.stock!==null){p.stock+=it.quantity;}
+      }
+      DB.set('products',products);
+      addNotification(state.currentUser.id,o.order_id,`Pesanan ${o.order_id} dibatalkan.`);
+      toast('Pesanan dibatalkan','info');
+      render();
+    }
+  },'Ya, Batalkan Pesanan',true);
+}
+function downloadResult(orderId, idx){
+  const orders = getOrders();
+  const o = orders.find(x=>x.id===orderId);
+  if(!o || !o.results[idx]) return;
+  const r = o.results[idx];
+  if(r.dataUrl){
+    const a = document.createElement('a');
+    a.href = r.dataUrl;
+    a.download = r.file_name;
+    a.click();
+  } else {toast('File hasil tersedia di dashboard admin','info');}
+}
+
+/* ============= PAGE: ORDERS ============= */
+function renderOrders(){
+  if(!state.currentUser){
+    return `<div class="empty">
+      <div class="empty-icon">🔒</div>
+      <h3>Silakan login terlebih dahulu</h3>
+      <button class="btn btn-primary" onclick="nav.go('login')">Login / Daftar</button>
+    </div>`;
+  }
+  const orders = getOrders().filter(o=>o.user_id===state.currentUser.id);
+  return `
+    <div class="page-header"><h1>Pesanan Saya 📦</h1></div>
+    ${orders.length===0
+      ? `<div class="empty"><div class="empty-icon">📦</div>
+          <h3>Belum ada pesanan.</h3><p>Yuk mulai belanja!</p>
+          <button class="btn btn-primary" onclick="nav.go('shop')">Mulai Belanja</button></div>`
+      : orders.map(o=>`
+        <div class="order-card">
+          <div class="order-head">
+            <div>
+              <div class="order-id">${o.order_id}</div>
+              <div class="fs-12 text-light">${o.date} • ${o.time}</div>
+            </div>
+            <span class="badge-pill ${o.order_status==='Selesai'?'badge-success':o.order_status==='Dibatalkan'?'badge-danger':'badge-pink'}">${o.order_status}</span>
+          </div>
+          <div class="order-items">
+            ${o.items.slice(0,2).map(it=>`
+              <div class="order-item-row">
+                <div class="oi-img">${it.image}</div>
+                <div style="flex:1;">
+                  <div class="fw-700 fs-13">${it.name}</div>
+                  <div class="fs-12 text-light">${it.quantity} × ${fmt(it.unit_price)}</div>
+                </div>
+                <div class="fw-700 fs-13">${fmt(it.subtotal)}</div>
+              </div>`).join('')}
+            ${o.items.length>2?`<div class="fs-12 text-light">+${o.items.length-2} item lainnya</div>`:''}
+          </div>
+          <div class="order-foot">
+            <div class="fs-12 text-light">Total</div>
+            <div class="order-total">${fmt(o.total)}</div>
+          </div>
+          <div class="order-actions">
+            <button class="btn btn-outline btn-sm" onclick="state.currentOrderId='${o.id}';nav.go('order_detail')">Lihat Detail</button>
+            ${o.queue?`<span class="badge-pill badge-blue">Antrean #${String(o.queue).padStart(2,'0')}</span>`:''}
+          </div>
+        </div>`).join('')}
+  `;
+}
+
+/* ============= PAGE: PROFILE ============= */
+function renderProfile(){
+  const u = state.currentUser;
+  if(!u){
+    return `
+      <div class="page-header"><h1>Profil 👤</h1></div>
+      <div class="empty">
+        <div class="empty-icon">👤</div>
+        <h3>Belum login</h3>
+        <p>Login atau daftar untuk mulai berbelanja</p>
+        <div class="flex gap-8" style="justify-content:center;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="nav.go('login')">Login</button>
+          <button class="btn btn-secondary" onclick="nav.go('register')">Daftar</button>
+        </div>
+      </div>
+      <div class="card mt-16 text-center">
+        <p class="fs-13 text-light mb-8">Butuh bantuan? Hubungi Admin 💗</p>
+        <button class="btn btn-wa btn-sm" onclick="contactAdmin()"><i class="fab fa-whatsapp"></i> Chat Admin</button>
+      </div>`;
+  }
+  const orders = getOrders().filter(o=>o.user_id===u.id);
+  const active = orders.filter(o=>o.order_status!=='Selesai'&&o.order_status!=='Dibatalkan').length;
+  const done = orders.filter(o=>o.order_status==='Selesai').length;
+  const ratings = getRatings().filter(r=>r.user_id===u.id);
+  const avgRating = ratings.length ? (ratings.reduce((s,r)=>s+r.rating,0)/ratings.length).toFixed(1) : '-';
+  return `
+    <div class="page-header"><h1>Profil 👤</h1></div>
+    <div class="card text-center mb-16" style="background:linear-gradient(135deg,#ffe6ef,#fff5f8);">
+      <div style="width:70px;height:70px;border-radius:50%;
+        background:linear-gradient(135deg,var(--pink-300),var(--pink-500));
+        margin:0 auto 10px;display:flex;align-items:center;justify-content:center;
+        font-size:30px;color:#fff;">${u.name.charAt(0).toUpperCase()}</div>
+      <h3 style="font-size:17px;">${u.name}</h3>
+      <p class="fs-13 text-light">${u.email}</p>
+      <p class="fs-13 text-light">📱 ${u.whatsapp}</p>
+      ${u.role==='admin'?`<span class="badge-pill badge-pink mt-8" style="display:inline-block;">Admin</span>`:''}
+    </div>
+    <div class="stat-grid mb-16">
+      <div class="stat-card"><div class="sc-label">Pesanan Aktif</div><div class="sc-value">${active}</div></div>
+      <div class="stat-card"><div class="sc-label">Selesai</div><div class="sc-value">${done}</div></div>
+      <div class="stat-card"><div class="sc-label">Total Pesanan</div><div class="sc-value">${orders.length}</div></div>
+      <div class="stat-card"><div class="sc-label">Rating Saya</div><div class="sc-value">${avgRating}⭐</div></div>
+    </div>
+    ${u.role==='admin'?`
+      <button class="btn btn-primary btn-block mb-16" onclick="nav.go('admin')">
+        <i class="fas fa-cog"></i> Buka Dashboard Admin</button>`:''}
+    <div class="card mb-16">
+      <button class="btn btn-outline btn-block mb-8" onclick="nav.go('orders')"><i class="fas fa-box"></i> Pesanan Saya</button>
+      <button class="btn btn-outline btn-block mb-8" onclick="nav.go('cart')"><i class="fas fa-shopping-cart"></i> Keranjang</button>
+      <button class="btn btn-wa btn-block" onclick="contactAdmin()"><i class="fab fa-whatsapp"></i> Hubungi Admin</button>
+    </div>
+    <div class="card text-center">
+      <p class="fs-13 text-light mb-8">Ikuti kami 🎀</p>
+      <div class="flex" style="justify-content:center;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-outline btn-sm" onclick="openInstagram()"><i class="fab fa-instagram"></i> Instagram</button>
+        <button class="btn btn-outline btn-sm" onclick="openTiktok()"><i class="fab fa-tiktok"></i> TikTok</button>
+      </div>
+    </div>
+    <button class="btn btn-danger btn-block mt-16" onclick="logout()">Logout</button>
+  `;
+}
+
+/* ============= PAGE: LOGIN / REGISTER ============= */
+function renderLogin(){
+  return `
+    <div class="page-header">
+      <button class="back-btn" onclick="nav.go('home')"><i class="fas fa-arrow-left"></i></button>
+      <h1>Login</h1>
+    </div>
+    <div class="card">
+      <div class="text-center mb-16">
+        <div class="logo-icon" style="width:56px;height:56px;font-size:28px;margin:0 auto 10px;">🎀</div>
+        <h2 style="font-size:18px;">Selamat Datang Kembali!</h2>
+        <p class="fs-13 text-light">Login untuk melanjutkan</p>
+      </div>
+      <div class="form-group"><label>Email</label>
+        <input type="email" id="loginEmail" placeholder="email@example.com"></div>
+      <div class="form-group"><label>Password</label>
+        <input type="password" id="loginPass" placeholder="••••••••"></div>
+      <button class="btn btn-primary btn-block" onclick="doLogin()">Login</button>
+      <div class="text-center mt-16 fs-13">
+        Belum punya akun? <a onclick="nav.go('register')" style="color:var(--pink-600);font-weight:700;cursor:pointer;">Daftar di sini</a>
+      </div>
+      <div class="fs-12 text-light mt-16" style="padding:10px;background:var(--pink-50);border-radius:8px;">
+        <b>Demo:</b><br>Admin: admin@pinkyedu.id / admin123<br>Buyer: buyer@demo.id / buyer123
+      </div>
+    </div>`;
+}
+function renderRegister(){
+  return `
+    <div class="page-header">
+      <button class="back-btn" onclick="nav.go('login')"><i class="fas fa-arrow-left"></i></button>
+      <h1>Daftar</h1>
+    </div>
+    <div class="card">
+      <div class="text-center mb-16">
+        <div class="logo-icon" style="width:56px;height:56px;font-size:28px;margin:0 auto 10px;">🎀</div>
+        <h2 style="font-size:18px;">Buat Akun Baru</h2>
+      </div>
+      <div class="form-group"><label>Nama Lengkap</label><input type="text" id="regName" placeholder="Nama kamu"></div>
+      <div class="form-group"><label>Email</label><input type="email" id="regEmail" placeholder="email@example.com"></div>
+      <div class="form-group"><label>WhatsApp</label><input type="tel" id="regWA" placeholder="08xxxxxxxxxx"></div>
+      <div class="form-group"><label>Password</label><input type="password" id="regPass" placeholder="Minimal 6 karakter"></div>
+      <button class="btn btn-primary btn-block" onclick="doRegister()">Daftar</button>
+      <div class="text-center mt-16 fs-13">
+        Sudah punya akun? <a onclick="nav.go('login')" style="color:var(--pink-600);font-weight:700;cursor:pointer;">Login</a>
+      </div>
+    </div>`;
+}
+function doLogin(){
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  if(!email||!pass){toast('Isi email dan password','error');return;}
+  const u = getUsers().find(x=>x.email===email && x.password===pass);
+  if(!u){toast('Email atau password salah','error');return;}
+  state.currentUser = u;
+  saveUser();
+  toast(`Selamat datang, ${u.name}! 💗`);
+  if(u.role==='admin') nav.go('admin');
+  else nav.go('home');
+}
+function doRegister(){
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const wa = document.getElementById('regWA').value.trim();
+  const pass = document.getElementById('regPass').value;
+  if(!name||!email||!wa||!pass){toast('Semua field wajib diisi','error');return;}
+  if(pass.length<6){toast('Password minimal 6 karakter','error');return;}
+  const users = getUsers();
+  if(users.find(u=>u.email===email)){toast('Email sudah terdaftar','error');return;}
+  const newUser = {id:'u_'+uid(),name,email,whatsapp:wa,password:pass,role:'buyer'};
+  users.push(newUser);
+  DB.set('users',users);
+  state.currentUser = newUser;
+  saveUser();
+  toast('Registrasi berhasil! Akun langsung aktif 🎉');
+  nav.go('home');
+}
+function logout(){
+  confirmDialog('Logout','Apakah kamu yakin ingin keluar?',()=>{
+    state.currentUser = null;
+    DB.remove('currentUser');
+    toast('Berhasil logout','info');
+    nav.go('home');
+  },'Ya, Logout',true);
+}
+
+/* ============= PAGE: ADMIN ============= */
+function renderAdmin(){
+  if(!state.currentUser || state.currentUser.role!=='admin'){
+    return `<div class="empty"><h3>Akses ditolak</h3><p>Halaman ini hanya untuk Admin.</p></div>`;
+  }
+  const orders = getOrders();
+  const products = getProducts();
+  const ratings = getRatings();
+  const stats = {
+    new: orders.filter(o=>o.order_status==='Menunggu Pembayaran').length,
+    paid: orders.filter(o=>o.payment_status==='Pembayaran Diterima').length,
+    waiting: orders.filter(o=>o.order_status==='Menunggu Diproses').length,
+    proses: orders.filter(o=>o.order_status==='Proses').length,
+    selesai: orders.filter(o=>o.order_status==='Selesai').length,
+    total: orders.length
+  };
+  const menu = [
+    {id:'dashboard',icon:'fa-chart-line',label:'Dashboard'},
+    {id:'orders',icon:'fa-shopping-bag',label:'Pesanan'},
+    {id:'products',icon:'fa-box',label:'Produk'},
+    {id:'stock',icon:'fa-warehouse',label:'Stok'},
+    {id:'payments',icon:'fa-credit-card',label:'Pembayaran'},
+    {id:'files',icon:'fa-paperclip',label:'File'},
+    {id:'queue',icon:'fa-users',label:'Antrean'},
+    {id:'ratings',icon:'fa-star',label:'Rating'},
+    {id:'settings',icon:'fa-cog',label:'Pengaturan'}
+  ];
+  let content = '';
+  if(state.adminTab==='dashboard'){
+    content = `
+      <div class="stat-grid">
+        <div class="stat-card"><div class="sc-icon"><i class="fas fa-shopping-bag"></i></div><div class="sc-label">Pesanan Baru</div><div class="sc-value">${stats.new}</div></div>
+        <div class="stat-card"><div class="sc-icon"><i class="fas fa-credit-card"></i></div><div class="sc-label">Pembayaran</div><div class="sc-value">${stats.paid}</div></div>
+        <div class="stat-card"><div class="sc-icon"><i class="fas fa-hourglass"></i></div><div class="sc-label">Menunggu</div><div class="sc-value">${stats.waiting}</div></div>
+        <div class="stat-card"><div class="sc-icon"><i class="fas fa-cog"></i></div><div class="sc-label">Proses</div><div class="sc-value">${stats.proses}</div></div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="sc-label">Selesai</div><div class="sc-value">${stats.selesai}</div></div>
+        <div class="stat-card"><div class="sc-label">Total Pesanan</div><div class="sc-value">${stats.total}</div></div>
+        <div class="stat-card"><div class="sc-label">Produk</div><div class="sc-value">${products.length}</div></div>
+        <div class="stat-card"><div class="sc-label">Rating</div><div class="sc-value">${ratings.length}</div></div>
+      </div>
+      <h3 style="font-size:15px;margin:16px 0 10px;">📋 Pesanan Terbaru</h3>
+      ${orders.slice(0,5).map(o=>`
+        <div class="order-card">
+          <div class="order-head">
+            <div><div class="order-id">${o.order_id}</div><div class="fs-12 text-light">${o.buyer_name} • ${o.date}</div></div>
+            <span class="badge-pill badge-pink">${o.order_status}</span>
+          </div>
+          <div class="flex-between"><span class="fs-12 text-light">${o.items.length} item</span><b class="text-pink">${fmt(o.total)}</b></div>
+          <button class="btn btn-outline btn-sm mt-8" onclick="state.adminTab='orders';render()">Kelola</button>
+        </div>`).join('') || '<div class="empty"><p>Belum ada pesanan</p></div>'}`;
+  } else if(state.adminTab==='orders'){
+    content = `
+      <h3 style="font-size:15px;margin-bottom:10px;">📦 Semua Pesanan (${orders.length})</h3>
+      ${orders.length===0?'<div class="empty"><p>Belum ada pesanan</p></div>':
+        orders.map(o=>`
+          <div class="order-card">
+            <div class="order-head">
+              <div><div class="order-id">${o.order_id}</div><div class="fs-12 text-light">${o.buyer_name} • ${o.buyer_whatsapp}</div></div>
+              <span class="badge-pill badge-pink">${o.order_status}</span>
+            </div>
+            <div class="fs-12 text-light mb-8">${o.date} ${o.time} • ${o.payment_method} • ${o.payment_status}</div>
+            ${o.items.map(it=>`<div class="fs-13">• ${it.name} × ${it.quantity} = ${fmt(it.subtotal)}</div>`).join('')}
+            <div class="flex-between mt-8"><b>Total: <span class="text-pink">${fmt(o.total)}</span></b></div>
+            ${o.queue?`<div class="fs-12">Antrean: #${o.queue}</div>`:''}
+            <div class="flex gap-8 mt-8" style="flex-wrap:wrap;">
+              <select onchange="adminUpdateStatus('${o.id}',this.value)" style="padding:6px 10px;border-radius:8px;border:1.5px solid var(--pink-200);font-size:12px;">
+                <option value="">Ubah Status...</option>
+                ${['Menunggu Pembayaran','Pembayaran Diterima','Menunggu Diproses','Proses','Selesai','Dibatalkan'].map(s=>`<option ${o.order_status===s?'selected':''}>${s}</option>`).join('')}
+              </select>
+              <button class="btn btn-outline btn-sm" onclick="adminUploadResult('${o.id}')"><i class="fas fa-upload"></i> Upload Hasil</button>
+            </div>
+            ${o.results && o.results.length ? `<div class="fs-12 mt-8" style="color:var(--success);">✅ ${o.results.length} file hasil</div>`:''}
+          </div>`).join('')}`;
+  } else if(state.adminTab==='products'){
+    content = `
+      <h3 style="font-size:15px;margin-bottom:10px;">🛍️ Produk (${products.length})</h3>
+      ${products.map(p=>`
+        <div class="card mb-8">
+          <div class="flex-between">
+            <div style="flex:1;">
+              <div class="fw-700">${p.image} ${p.name}</div>
+              <div class="fs-12 text-light">${p.category} • ${fmt(p.price)} / ${p.unit}</div>
+              <div class="fs-12">${p.type==='product'?`Stok: <b>${p.stock}</b>`:'Jasa (tanpa stok)'}</div>
+            </div>
+            ${p.type==='product'?`
+              <input type="number" value="${p.stock}" min="0" style="width:70px;padding:6px;border:1.5px solid var(--pink-200);border-radius:8px;font-size:12px;" onchange="adminSetStock('${p.id}',this.value)">`:''}
+          </div>
+        </div>`).join('')}`;
+  } else if(state.adminTab==='stock'){
+    content = `
+      <h3 style="font-size:15px;margin-bottom:10px;">📊 Manajemen Stok</h3>
+      ${products.filter(p=>p.type==='product').map(p=>{
+        const st = getStockStatus(p.stock);
+        return `<div class="card mb-8">
+          <div class="flex-between">
+            <div>
+              <div class="fw-700">${p.image} ${p.name}</div>
+              <span class="badge-pill ${st.cls}">${st.label}</span>
+            </div>
+            <div class="flex gap-8">
+              <button class="btn btn-outline btn-sm" onclick="adminSetStock('${p.id}',${p.stock-1})">−</button>
+              <b style="min-width:40px;text-align:center;padding:6px 0;">${p.stock}</b>
+              <button class="btn btn-outline btn-sm" onclick="adminSetStock('${p.id}',${p.stock+1})">+</button>
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+      <h3 style="font-size:15px;margin:16px 0 10px;">📚 Kapasitas Layanan</h3>
+      ${products.filter(p=>p.type==='service').map(p=>`
+        <div class="card mb-8">
+          <div class="fw-700">${p.image} ${p.name}</div>
+          <div class="fs-12 text-light">Jasa tanpa stok fisik. Kapasitas dapat diatur Admin.</div>
+        </div>`).join('')}`;
+  } else if(state.adminTab==='payments'){
+    content = `
+      <h3 style="font-size:15px;margin-bottom:10px;">💳 Pembayaran</h3>
+      ${orders.filter(o=>o.payment_status!=='Dibatalkan').map(o=>`
+        <div class="card mb-8">
+          <div class="flex-between">
+            <div>
+              <div class="fw-700">${o.order_id}</div>
+              <div class="fs-12 text-light">${o.buyer_name} • ${fmt(o.total)}</div>
+              <div class="fs-12">Metode: ${o.payment_method}</div>
+            </div>
+            <div style="text-align:right;">
+              <span class="badge-pill ${o.payment_status==='Pembayaran Diterima'?'badge-success':'badge-warning'}">${o.payment_status}</span>
+              ${o.payment_status!=='Pembayaran Diterima'?`<br><button class="btn btn-primary btn-sm mt-8" onclick="adminConfirmPayment('${o.id}')">Konfirmasi</button>`:''}
+            </div>
+          </div>
+        </div>`).join('')||'<div class="empty"><p>Belum ada pembayaran</p></div>'}`;
+  } else if(state.adminTab==='files'){
+    const allFiles = [];
+    orders.forEach(o=>{
+      (o.items||[]).forEach(it=>{
+        (it.files||[]).forEach(f=>allFiles.push({...f,order_id:o.order_id,buyer:o.buyer_name}));
+      });
+      (o.results||[]).forEach(f=>allFiles.push({...f,order_id:o.order_id,buyer:o.buyer_name,isResult:true}));
+    });
+    content = `
+      <h3 style="font-size:15px;margin-bottom:10px;">📎 File (${allFiles.length})</h3>
+      ${allFiles.length===0?'<div class="empty"><p>Belum ada file yang diunggah.</p></div>':
+        allFiles.map(f=>`
+          <div class="file-item">
+            <div class="fi-icon"><i class="fas ${f.isResult?'fa-file-download':'fa-file-upload'}"></i></div>
+            <div class="fi-info">
+              <div class="fi-name">${f.file_name}</div>
+              <div class="fi-meta">${f.order_id} • ${f.buyer} • ${(f.file_size/1024).toFixed(1)} KB ${f.isResult?'• HASIL':''}</div>
+            </div>
+          </div>`).join('')}`;
+  } else if(state.adminTab==='queue'){
+    const activeOrders = orders.filter(o=>o.order_status!=='Selesai'&&o.order_status!=='Dibatalkan');
+    content = `
+      <h3 style="font-size:15px;margin-bottom:10px;">👥 Antrean (${activeOrders.length})</h3>
+      ${activeOrders.length===0?'<div class="empty"><p>Tidak ada antrean</p></div>':
+        activeOrders.sort((a,b)=>(a.queue||0)-(b.queue||0)).map(o=>`
+          <div class="card mb-8">
+            <div class="flex-between">
+              <div>
+                <div class="fw-700">#${String(o.queue||'-').padStart(2,'0')} • ${o.order_id}</div>
+                <div class="fs-12 text-light">${o.buyer_name} • ${o.order_status}</div>
+              </div>
+              <input type="number" value="${o.queue||1}" min="1" style="width:60px;padding:6px;border:1.5px solid var(--pink-200);border-radius:8px;font-size:12px;" onchange="adminSetQueue('${o.id}',this.value)">
+            </div>
+          </div>`).join('')}`;
+  } else if(state.adminTab==='ratings'){
+    content = `
+      <h3 style="font-size:15px;margin-bottom:10px;">⭐ Rating & Ulasan (${ratings.length})</h3>
+      ${ratings.length===0?'<div class="empty"><p>Belum ada rating</p></div>':
+        ratings.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).map(r=>`
+          <div class="card mb-8">
+            <div class="flex-between">
+              <div class="fw-700">${r.order_id}</div>
+              <div>${'⭐'.repeat(r.rating)}</div>
+            </div>
+            ${r.review?`<div class="fs-13 text-light mt-8">"${r.review}"</div>`:''}
+          </div>`).join('')}`;
+  } else if(state.adminTab==='settings'){
+    const s = DB.get('settings');
+    content = `
+      <h3 style="font-size:15px;margin-bottom:10px;">⚙️ Pengaturan Toko</h3>
+      <div class="card">
+        <div class="form-group"><label>WhatsApp</label><input value="${s.whatsapp}" onchange="adminSaveSetting('whatsapp',this.value)"></div>
+        <div class="form-group"><label>Nama Toko</label><input value="${s.storeName}" onchange="adminSaveSetting('storeName',this.value)"></div>
+        <div class="form-group"><label>Bank</label><input value="${s.bankName}" onchange="adminSaveSetting('bankName',this.value)"></div>
+        <div class="form-group"><label>No. Rekening</label><input value="${s.bankAccount}" onchange="adminSaveSetting('bankAccount',this.value)"></div>
+        <div class="form-group"><label>Atas Nama</label><input value="${s.bankHolder}" onchange="adminSaveSetting('bankHolder',this.value)"></div>
+        <div class="form-group"><label>QRIS Penerima</label><input value="${s.qrisReceiver}" onchange="adminSaveSetting('qrisReceiver',this.value)"></div>
+      </div>`;
+  }
+  return `
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <div class="logo mb-16" style="font-size:16px;">
+          <div class="logo-icon" style="width:30px;height:30px;font-size:14px;">🎀</div> Admin Panel
+        </div>
+        ${menu.map(m=>`<button class="${state.adminTab===m.id?'active':''}" onclick="state.adminTab='${m.id}';render();"><i class="fas ${m.icon}"></i> ${m.label}</button>`).join('')}
+        <div class="divider"></div>
+        <button onclick="nav.go('home')"><i class="fas fa-home"></i> Ke Toko</button>
+      </aside>
+      <div class="admin-content">
+        <div class="page-header">
+          <button class="back-btn" onclick="nav.go('home')"><i class="fas fa-arrow-left"></i></button>
+          <h1>Dashboard Admin 🎀</h1>
+        </div>
+        <div class="chips" style="margin-bottom:14px;">
+          ${menu.map(m=>`<button class="chip ${state.adminTab===m.id?'active':''}" onclick="state.adminTab='${m.id}';render();">${m.label}</button>`).join('')}
+        </div>
+        ${content}
+      </div>
+    </div>`;
+}
+function adminUpdateStatus(orderId, status){
+  if(!status) return;
+  const orders = getOrders();
+  const o = orders.find(x=>x.id===orderId);
+  if(!o) return;
+  o.order_status = status;
+  if(status==='Pembayaran Diterima') o.payment_status = 'Pembayaran Diterima';
+  if(status==='Dibatalkan') o.payment_status = 'Dibatalkan';
+  saveOrders(orders);
+  addNotification(o.user_id, o.order_id, `Status pesanan ${o.order_id} diperbarui: ${status}.`);
+  toast('Status diperbarui ✓');
+  render();
+}
+function adminConfirmPayment(orderId){
+  const orders = getOrders();
+  const o = orders.find(x=>x.id===orderId);
+  if(!o) return;
+  o.payment_status = 'Pembayaran Diterima';
+  o.order_status = 'Pembayaran Diterima';
+  saveOrders(orders);
+  addNotification(o.user_id, o.order_id, `Pembayaran berhasil diterima. Pesanan ${o.order_id} sedang diproses.`);
+  toast('Pembayaran dikonfirmasi ✓');
+  render();
+}
+function adminUploadResult(orderId){
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.pdf,.doc,.docx,.jpg,.jpeg,.png';
+  input.onchange = ()=>{
+    const file = input.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = e=>{
+      const orders = getOrders();
+      const o = orders.find(x=>x.id===orderId);
+      if(!o) return;
+      if(!o.results) o.results = [];
+      o.results.push({id:uid(),file_name:file.name,file_type:file.type,
+        file_size:file.size,dataUrl:e.target.result,uploaded_at:new Date().toISOString()});
+      o.order_status = 'Selesai';
+      o.payment_status = 'Pembayaran Diterima';
+      saveOrders(orders);
+      addNotification(o.user_id, o.order_id, `File hasil tersedia untuk pesanan ${o.order_id}. Pesanan selesai!`);
+      toast('File hasil diunggah ✓');
+      render();
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+}
+function adminSetStock(productId, val){
+  const products = getProducts();
+  const p = products.find(x=>x.id===productId);
+  if(!p) return;
+  p.stock = Math.max(0, parseInt(val)||0);
+  DB.set('products',products);
+  toast('Stok diperbarui ✓');
+  render();
+}
+function adminSetQueue(orderId, val){
+  const orders = getOrders();
+  const o = orders.find(x=>x.id===orderId);
+  if(!o) return;
+  o.queue = Math.max(1, parseInt(val)||1);
+  saveOrders(orders);
+  toast('Antrean diperbarui ✓');
+  render();
+}
+function adminSaveSetting(key, val){
+  const s = DB.get('settings');
+  s[key] = val;
+  DB.set('settings',s);
+  toast('Pengaturan disimpan ✓');
+}
+
+/* ============= EXTERNAL ============= */
+function openInstagram(){window.open(DB.get('settings').instagram,'_blank');}
+function openTiktok(){window.open(DB.get('settings').tiktok,'_blank');}
+function contactAdmin(){
+  const s = DB.get('settings');
+  const msg = `Halo Kak PinkyEdu 👋🏻🎀\n\nSaya ingin bertanya mengenai layanan yang tersedia. Bisa dibantu informasinya, Kak? Terima kasih ♡`;
+  window.open(`https://wa.me/62${s.whatsapp.replace(/^0/,'')}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+function consultSkripsiOrder(orderId){
+  const s = DB.get('settings');
+  const orders = getOrders();
+  const o = orders.find(x=>x.order_id===orderId);
+  let babList = '';
+  if(o){
+    const babItems = o.items.filter(it=>it.bab);
+    babList = babItems.map(it=>it.bab).join(', ');
+  }
+  const msg = `Halo Kak PinkyEdu 👋🏻🎀\n\nSaya sudah melakukan pemesanan dengan nomor *${orderId}*.\n\nSaya ingin berkonsultasi mengenai Pendampingan Skripsi Bab ${babList}. Bisa dibantu informasinya, Kak? Terima kasih ♡`;
+  window.open(`https://wa.me/62${s.whatsapp.replace(/^0/,'')}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+/* ============= MAIN RENDER ============= */
+function render(){
+  const main = document.getElementById('mainContent');
+  let html = '';
+  const page = state.currentPage;
+  if(page==='home') html = renderHome();
+  else if(page==='shop') html = renderShop();
+  else if(page==='product_detail') html = renderProductDetail(state.detailProductId);
+  else if(page==='cart') html = renderCart();
+  else if(page==='checkout') html = renderCheckout();
+  else if(page==='orders') html = renderOrders();
+  else if(page==='order_detail') html = renderOrderDetail(state.currentOrderId);
+  else if(page==='profile') html = renderProfile();
+  else if(page==='login') html = renderLogin();
+  else if(page==='register') html = renderRegister();
+  else if(page==='admin') html = renderAdmin();
+  else html = renderHome();
+  main.innerHTML = `<div class="page active">${html}</div>`;
+  renderBottomNav();
+  renderDesktopNav();
+  updateCartBadges();
+  if(page==='checkout' && state.checkoutStep==='payment') showPaymentDetail(state.checkoutPayment||'QRIS');
+}
+
+/* ============= INIT ============= */
+initData();
+render();
+
+/* ============= EXPOSE ============= */
+window.shop = shop; window.nav = nav; window.state = state;
+window.openProductDetail = openProductDetail;
+window.detailQty = detailQty;
+window.detailAddToCart = detailAddToCart;
+window.detailBuyNow = detailBuyNow;
+window.addToCart = addToCart;
+window.updateCartQty = updateCartQty;
+window.removeFromCart = removeFromCart;
+window.handleFileUpload = handleFileUpload;
+window.setItemField = setItemField;
+window.removeFile = removeFile;
+window.checkout = checkout;
+window.selectPayment = selectPayment;
+window.goToPayment = goToPayment;
+window.submitCheckout = submitCheckout;
+window.copyText = copyText;
+window.setRating = setRating;
+window.submitRating = submitRating;
+window.cancelOrder = cancelOrder;
+window.downloadResult = downloadResult;
+window.doLogin = doLogin;
+window.doRegister = doRegister;
+window.logout = logout;
+window.adminUpdateStatus = adminUpdateStatus;
+window.adminConfirmPayment = adminConfirmPayment;
+window.adminUploadResult = adminUploadResult;
+window.adminSetStock = adminSetStock;
+window.adminSetQueue = adminSetQueue;
+window.adminSaveSetting = adminSaveSetting;
+window.contactAdmin = contactAdmin;
+window.consultSkripsiOrder = consultSkripsiOrder;
+window.openInstagram = openInstagram;
+window.openTiktok = openTiktok;
+window.render = render;
+window.closeModal = closeModal;
+window.confirmDialog = confirmDialog;
+window.toast = toast;
+window.showModal = showModal;
+</script>
+</body>
+</html>
